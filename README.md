@@ -1,2 +1,2 @@
 # Projeto-Individual
-Projeto 
+Projeto Individual para aplicação dos conteúdos aprendidos no semestre.
