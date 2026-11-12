@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O Homem-Deus</title>
 
-     <!-- fontes Cormorant Garamond -->
+    <!-- fontes Cormorant Garamond -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
 
 </head>
+
 <body>
     <header class="cabecalho">
 
@@ -22,24 +26,101 @@
 
                 O HOMEM DEUS
             </a>
-        <button class="botao-menu" id="botaoMenu" onclick="abrirFecharMenu()">☰</button>
+            <button class="botao-menu" id="botaoMenu" onclick="abrirFecharMenu()">☰</button>
 
-        <nav class="menu" id="menu">
-            <a href="#inicio" onclick="fecharMenu()">Início</a>
-            <a href="#humanidade" onclick="fecharMenu()">Humanidade</a>
-            <a href="#evangelhos" onclick="fecharMenu()">Evangelhos</a>
-            <a href="#ditados" onclick="fecharMenu()">Ditados</a>
-            <a href="#quiz" onclick="fecharMenu()">Quiz</a>
-            <div class="area-usuario" id="areaUsuario">
-                <a href="login.html" class="menu-entrar">Entrar</a>
-            </div>
+            <nav class="menu" id="menu">
+                <a href="#inicio" onclick="fecharMenu()">Início</a>
+                <a href="#humanidade" onclick="fecharMenu()">Humanidade</a>
+                <a href="#evangelhos" onclick="fecharMenu()">Evangelhos</a>
+                <a href="#ditados" onclick="fecharMenu()">Ditados</a>
+                <a href="#quiz" onclick="fecharMenu()">Quiz</a>
+                <div class="area-usuario" id="areaUsuario">
+                    <a href="login.html" class="menu-entrar">Entrar</a>
+                </div>
 
-        </nav>
+            </nav>
         </div>
     </header>
+    <section class="hero" id="inicio">
+        <div class="hero-conteudo">
+            <p class="hero-referencia">
+                <span class="linha"></span>
+                <button class="link-versiculo" onclick="abrirVersiculo('João 1:14')">JOÃO 1:14</button>
+                <span class="linha"></span>
+            </p>
+            <h1 class="hero-titulo">O HOMEM-<em>DEUS</em></h1>
+            <p class="hero-naturezas"> 100% HOMEM <span class="ponto">•</span> 100% DEUS</p>
+            <p class="hero-subtitulo"> Como Jesus se revelou ao longo da Bíblia - O Deus que se fez homem.</p>
+            <a href="#naturezas" class="botao-hero">Conheca a história<span>→</span></a>
+        </div>
+    </section>
+
+    <div class="cards-naturezas">
+        <!-- CARD 01: 100% HOMEM -->
+        <article class="card-natureza">
+            <span class="card-numero">1</span>
+            <div class="card-icone">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="12" cy="8" r="4"></circle>
+                    <path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path>
+                </svg>
+            </div>
+            <p class="card-rotulo">Verdadeiramente</p>
+            <h3 class="card-titulo">100% Homem</h3>
+            <p class="card-texto">Jesus viveu a experiência humana por completo. Conheceu nossas dores sem viver o
+                pecado </p>
+            <ul class="lista-check">
+                <li>Sentiu fome e cansaço</li>
+                <li>Chorou e vivenciou o luto</li>
+                <li>Cultivou Amizades</li>
+                <li>Sofreu dor e tentação</li>
+            </ul>
+            <div class="card-referencia">
+                <span class="card-referencia-icone">📖</span>
+                <div>
+                    <button class="link-versiculo card-referencia-nome"
+                        onclick="abrirVersiculo('Filipenses 2: 5-8')">Filipenses 2:5-8</button>
+                    <p class="card-referencia-frase">"Assumindo a forma de servo..."</p>
+                </div>
+            </div>
+        </article>
+    </div>
 
 
-
+    <!-- CARD 02: 100% Deus -->
+    <article class="card-natureza card-escuro">
+        <span class="card-numero">02</span>
+        <div class="card-icone">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path>
+                <path d="M19 16l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"></path>
+            </svg>
+        </div>
+        <p class="card-rotulo">Verdadeiramente</p>
+        <h3 class="card-titulo">100% Deus</h3>
+        <p class="card-texto">
+            Na humanidade de Jesus, a glória do Deus eterno tornou-se visível e veio
+            habitar entre nós.
+        </p>
+        <ul class="lista-check">
+            <li>Acalmou o vento e o mar</li>
+            <li>Perdoou pecados</li>
+            <li>Revelou o Pai</li>
+            <li>Venceu a morte</li>
+        </ul>
+        <div class="card-referencia">
+            <span class="card-referencia-icone">📖</span>
+            <div>
+                <button class="link-versiculo card-referencia-nome" onclick="abrirVersiculo('João 1:1-14')">João
+                    1:1–14</button>
+                <p class="card-referencia-frase">“O Verbo era Deus...”</p>
+            </div>
+        </div>
+    </article>
+    </div>
+    </div>
+    </section>
 
 </body>
+
 </html>
