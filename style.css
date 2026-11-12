@@ -1,0 +1,82 @@
+:root {
+    --azul-noite: #0b2a4b;
+    --azul-profundo: #071a30;
+    --azul-medio: #1e5a9e;
+    --azul-claro: #84acd6;
+    --azul-gelo: #bcd3eb;
+    --azul-nevoa: #e7f0fb;
+    --fundo-claro: #f3f8fd;
+    --dourado: #d8b66d;
+    --texto: #10233b;
+    --texto-suave: #5b6b80;
+    --borda: #dbe6f2;
+    --branco: #ffffff;
+
+    --fonte-titulo: 'Cormorant Garamond', Georgia, serif;
+    --fonte-texto: 'DM Sans', Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 64px;
+}
+
+body {
+    font-family: var(--fonte-texto);
+    color: var(--texto);
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+.rotulo { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--azul-medio); margin-bottom: 16px; }
+
+.titulo-secao {
+    font-family: var(--fonte-titulo);
+    font-weight: 400;
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1.05;
+    color: var(--azul-noite);
+}
+.titulo-secao em { font-style: italic; color: var(--azul-medio); }
+
+.cabecalho {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: linear-gradient(180deg, #0d2a4a, #15395f);
+}
+
+.cabecalho-conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+}
+
+.logo-icone {
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu { display: flex; align-items: center; gap: 30px; }
+.menu a { color: rgba(255, 255, 255, 0.8); font-size: 13px; transition: color 0.2s; }
+.menu a:hover { color: var(--branco); }

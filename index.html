@@ -4,44 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O Homem-Deus</title>
+
+     <!-- fontes Cormorant Garamond -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+
 </head>
 <body>
-    <header>
-        <p>"E o Verbo se fez carne e habitou entre nós" João 1:14</p>
-        <h1>O HOMEM-DEUS</h1>
-        <h2>100% Homem e 100% Deus</h2>
-        <p>Passando pela humanidade de Jesus</p>
-    </header>
+    <header class="cabecalho">
 
-    <main>
-        <section class="introducao">
-            <h2>"Deus entende a sua dor"</h2>
-            <p>Muitas vezes ouvimos esse tipo de frase, e nao levamos a sério. Mas você já parou para refletir na real profundidade por trás disso?</p>
-            <p>Jesus, como homem, enfrentou tudo o que ser humano implica.</p>
-        </section>
+        <div class="container cabecalho conteudo">
+            <a href="#inicio" class="logo">
+                <span class="logo-icone">†</span>
 
-        <h2 class="titulo-jornada">A jornada da humanidade de Jesus</h2>
+                O HOMEM DEUS
+            </a>
+        <button class="botao-menu" id="botaoMenu" onclick="abrirFecharMenu()">☰</button>
 
-        <section class="etapa">
-            <div class="numero">1</div>
-            <div class="conteudo">
-                <ul>
-                    <li>Ele já foi criança.</li>
-                    <li> Como todo homem judeu de sua época, estudou as escrituras.</li>
-                    <li>Tinha amigos.</li>
-                    <li>Sentia fome.</li>
-                    <li>Sentia cansaço e precisava descansar.</li> 
-                </ul>
+        <nav class="menu" id="menu">
+            <a href="#inicio" onclick="fecharMenu()">Início</a>
+            <a href="#humanidade" onclick="fecharMenu()">Humanidade</a>
+            <a href="#evangelhos" onclick="fecharMenu()">Evangelhos</a>
+            <a href="#ditados" onclick="fecharMenu()">Ditados</a>
+            <a href="#quiz" onclick="fecharMenu()">Quiz</a>
+            <div class="area-usuario" id="areaUsuario">
+                <a href="login.html" class="menu-entrar">Entrar</a>
             </div>
 
-            <section class="etapa">
-            
-            </section>
+        </nav>
+        </div>
+    </header>
 
 
-        </section>
 
-    </main>
 
 </body>
 </html>
