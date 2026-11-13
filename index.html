@@ -1,126 +1,367 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O Homem-Deus</title>
 
-    <!-- fontes Cormorant Garamond -->
+    <!-- Fontes do Google: Cormorant Garamond (títulos elegantes, com serifa)
+         e DM Sans (textos e menus, sem serifa e fácil de ler) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
-
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="script.js"></script>
 </head>
 
 <body>
+    <!-- =====================================================
+         CABEÇALHO FIXO + MENU DE NAVEGAÇÃO
+         ===================================================== -->
     <header class="cabecalho">
+        <div class="container cabecalho-conteudo">
 
-        <div class="container cabecalho conteudo">
+            <!-- Logo: um link que leva para o topo da página (#inicio) -->
             <a href="#inicio" class="logo">
                 <span class="logo-icone">†</span>
-
-                O HOMEM DEUS
+                O HOMEM-DEUS
             </a>
-            <button class="botao-menu" id="botaoMenu" onclick="abrirFecharMenu()">☰</button>
 
+            <!-- Botão "hambúrguer": só aparece no celular (o CSS controla isso) -->
+            <button class="botao-menu" id="botaoMenu" onclick="abrirFecharMenu()" aria-label="Abrir menu">☰</button>
+
+            <!-- Menu: cada link leva a uma seção da página pelo id (#humanidade, #evangelhos...) -->
             <nav class="menu" id="menu">
                 <a href="#inicio" onclick="fecharMenu()">Início</a>
                 <a href="#humanidade" onclick="fecharMenu()">Humanidade</a>
                 <a href="#evangelhos" onclick="fecharMenu()">Evangelhos</a>
                 <a href="#ditados" onclick="fecharMenu()">Ditados</a>
                 <a href="#quiz" onclick="fecharMenu()">Quiz</a>
+
+                <!-- Esta área muda pelo JavaScript: mostra "Entrar" ou "Olá, nome | Sair" -->
                 <div class="area-usuario" id="areaUsuario">
                     <a href="login.html" class="menu-entrar">Entrar</a>
                 </div>
-
             </nav>
         </div>
     </header>
     <section class="hero" id="inicio">
-        <div class="hero-conteudo">
-            <p class="hero-referencia">
-                <span class="linha"></span>
-                <button class="link-versiculo" onclick="abrirVersiculo('João 1:14')">JOÃO 1:14</button>
-                <span class="linha"></span>
+    <div class="hero-conteudo">
+        <p class="hero-referencia">
+            <span class="linha"></span>
+            <button class="link-versiculo" onclick="abrirVersiculo('João 1:14')">JOÃO 1:14</button>
+            <span class="linha"></span>
+        </p>
+        <h1 class="hero-titulo">O HOMEM-<em>DEUS</em></h1>
+        <p class="hero-naturezas">100% HOMEM <span class="ponto">•</span> 100% DEUS</p>
+        <p class="hero-subtitulo">Como Jesus se revelou ao longo da Bíblia — o Deus que se fez carne e habitou entre nós.</p>
+        <a href="#naturezas" class="botao-hero">Conheça a história <span>→</span></a>
+    </div>
+</section>
+        <!-- =====================================================
+         SEÇÃO 2 — DUAS NATUREZAS (os dois cards)
+         ===================================================== -->
+    <section class="naturezas" id="naturezas">
+        <div class="container">
+
+            <p class="rotulo">O mistério da encarnação</p>
+            <h2 class="titulo-secao">Duas naturezas.<br><em>Uma só pessoa.</em></h2>
+            <p class="texto-secao">
+                A fé cristã contempla em Jesus Cristo a união perfeita da humanidade e da
+                divindade — sem confusão, sem divisão.
             </p>
-            <h1 class="hero-titulo">O HOMEM-<em>DEUS</em></h1>
-            <p class="hero-naturezas"> 100% HOMEM <span class="ponto">•</span> 100% DEUS</p>
-            <p class="hero-subtitulo"> Como Jesus se revelou ao longo da Bíblia - O Deus que se fez homem.</p>
-            <a href="#naturezas" class="botao-hero">Conheca a história<span>→</span></a>
+
+            <div class="cards-naturezas">
+
+                <!-- CARD 01 — 100% Homem (fundo branco) -->
+                <article class="card-natureza">
+                    <span class="card-numero">01</span>
+                    <!-- Ícone de pessoa desenhado em SVG (desenho feito com código) -->
+                    <div class="card-icone">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <circle cx="12" cy="8" r="4"></circle>
+                            <path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path>
+                        </svg>
+                    </div>
+                    <p class="card-rotulo">Jesus, o nazareno</p>
+                    <h3 class="card-titulo">100% Homem</h3>
+                    <p class="card-texto">
+                        Jesus entrou por inteiro na experiência humana. Conheceu nossos limites
+                        sem conhecer o pecado.
+                    </p>
+                    <ul class="lista-check">
+                        <li>Sentiu fome e cansaço</li>
+                        <li>Chorou e viveu o luto</li>
+                        <li>Cultivou amizades</li>
+                        <li>Sofreu dor e tentação</li>
+                    </ul>
+                    <div class="card-referencia">
+                        <span class="card-referencia-icone">📖</span>
+                        <div>
+                            <button class="link-versiculo card-referencia-nome" onclick="abrirVersiculo('Filipenses 2:5-8')">Filipenses 2:5–8</button>
+                            <p class="card-referencia-frase">“Assumindo a forma de servo...”</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CARD 02 — 100% Deus (fundo azul-escuro: classe extra "card-escuro") -->
+                <article class="card-natureza card-escuro">
+                    <span class="card-numero">02</span>
+                    <!-- Ícone de brilho/estrela em SVG -->
+                    <div class="card-icone">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path>
+                            <path d="M19 16l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"></path>
+                        </svg>
+                    </div>
+                    <p class="card-rotulo">o "Eu Sou"</p>
+                    <h3 class="card-titulo">100% Deus</h3>
+                    <p class="card-texto">
+                        Na humanidade de Jesus, a glória do Deus eterno tornou-se visível e veio
+                        habitar entre nós.
+                    </p>
+                    <ul class="lista-check">
+                        <li>Acalmou o vento e o mar</li>
+                        <li>Perdoou pecados</li>
+                        <li>Revelou o Pai</li>
+                        <li>Venceu a morte</li>
+                    </ul>
+                    <div class="card-referencia">
+                        <span class="card-referencia-icone">📖</span>
+                        <div>
+                            <button class="link-versiculo card-referencia-nome" onclick="abrirVersiculo('João 1:1-14')">João 1:1–14</button>
+                            <p class="card-referencia-frase">“O Verbo era Deus...”</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </div>
     </section>
-
-    <div class="cards-naturezas">
-        <!-- CARD 01: 100% HOMEM -->
-        <article class="card-natureza">
-            <span class="card-numero">1</span>
-            <div class="card-icone">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <circle cx="12" cy="8" r="4"></circle>
-                    <path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path>
-                </svg>
-            </div>
-            <p class="card-rotulo">Verdadeiramente</p>
-            <h3 class="card-titulo">100% Homem</h3>
-            <p class="card-texto">Jesus viveu a experiência humana por completo. Conheceu nossas dores sem viver o
-                pecado </p>
-            <ul class="lista-check">
-                <li>Sentiu fome e cansaço</li>
-                <li>Chorou e vivenciou o luto</li>
-                <li>Cultivou Amizades</li>
-                <li>Sofreu dor e tentação</li>
-            </ul>
-            <div class="card-referencia">
-                <span class="card-referencia-icone">📖</span>
+ 
+    <section class="humanidade" id="humanidade">
+        <div class="container">
+            <div class="humanidade-topo">
                 <div>
-                    <button class="link-versiculo card-referencia-nome"
-                        onclick="abrirVersiculo('Filipenses 2: 5-8')">Filipenses 2:5-8</button>
-                    <p class="card-referencia-frase">"Assumindo a forma de servo..."</p>
+                    <p class="rotulo">Uma jornada em 5 capítulos</p>
+                    <h2 class="título-secao">A humanidade <br><em>de Cristo</em></h2>
+                </div>
+                <p class="humanidade-descricao">
+                    Dos primeiros anos em Nazaré à cruz e à ressurreição, acompanhe como a Bíblia revela um Salvador que conhece profundamente a nossa condição humana.
+                </p>
+            </div>
+        </div>
+          <!-- ---------- CAPÍTULO 01 ---------- -->
+        <div class="ca´pitulo" id="capitulo1">
+            <button class="capitulo-linha" onclick="abirirCapitulo(1)">
+                <span class="capitulo-numero">01</span>
+                <span class="capitulo-info">
+                    <span class="capitulo-ref">João 1:14</span>
+                    <span class="capitulo-titulo">O Deus que se fez homem</span>
+                </span>
+                <span class="capitulo-resumo">O Deus criador dos céus e da Terra se despiu de sua glória e assumiu a forma de sua criação.</span>
+                <span class="capitulo-seta">→</span>
+            </button>
+            <div class="capitulo-detalhe">
+                <div class="detalhe-grid">
+                    <div class="detalhe-texto">
+                        <p>
+                            Antes de Belém, Jesus já existia: "No princípio era o Verbo"
+                            (<button class="link-versiculo" onclick="abrirVersiculo('João 1:1')">João 1:1</button>).
+                            O mesmo Verbo que deu vida à todas as coisas escolheu nascer como um bebê. E  indo contra tudo que o povo da época acreditava, não veio em uma família rica,
+                             mas numa familia simples, numa cidade pequena.
+                             </p>
+                             <p>
+                                Na plenitude dos tempos, Deus enviou seu Filho, nascido de mulher
+                                (<button class="link-versiculo" onclick="abrirVersiculo('Gálatas 4:4')">Gálatas 4:4</button>).
+                                Ele não apenas pareceu humano — Ele se tornou humano, sem deixar de ser Deus.
+                            </p>
+                    </div>
+                    <blockquote class="destaque">
+                            “E o Verbo se fez carne.”
+                            <button class="link-versiculo destaque-ref" onclick="abrirVersiculo('João 1:14')">João 1:14</button>
+                        </blockquote>
                 </div>
             </div>
-        </article>
-    </div>
-
-
-    <!-- CARD 02: 100% Deus -->
-    <article class="card-natureza card-escuro">
-        <span class="card-numero">02</span>
-        <div class="card-icone">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path>
-                <path d="M19 16l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"></path>
-            </svg>
         </div>
-        <p class="card-rotulo">Verdadeiramente</p>
-        <h3 class="card-titulo">100% Deus</h3>
-        <p class="card-texto">
-            Na humanidade de Jesus, a glória do Deus eterno tornou-se visível e veio
-            habitar entre nós.
-        </p>
-        <ul class="lista-check">
-            <li>Acalmou o vento e o mar</li>
-            <li>Perdoou pecados</li>
-            <li>Revelou o Pai</li>
-            <li>Venceu a morte</li>
-        </ul>
-        <div class="card-referencia">
-            <span class="card-referencia-icone">📖</span>
-            <div>
-                <button class="link-versiculo card-referencia-nome" onclick="abrirVersiculo('João 1:1-14')">João
-                    1:1–14</button>
-                <p class="card-referencia-frase">“O Verbo era Deus...”</p>
+
+                    <!-- ---------- CAPÍTULO 02 ---------- -->
+            <div class="capitulo" id="capitulo2">
+                <button class="capitulo-linha" onclick="abrirCapitulo(2)">
+                    <span class="capitulo-numero">02</span>
+                    <span class="capitulo-info">
+                        <span class="capitulo-ref">Lucas 2:40–52</span>
+                        <span class="capitulo-titulo">Jesus viveu nossa condição</span>
+                    </span>
+                    <span class="capitulo-resumo">Ele cresceu, aprendeu, trabalhou e viveu no ritmo comum de uma família.</span>
+                    <span class="capitulo-seta">→</span>
+                </button>
+
+                <div class="capitulo-detalhe">
+                    <div class="detalhe-grid">
+                        <div>
+                            <h4 class="detalhe-subtitulo">O que Jesus viveu como homem</h4>
+                            <ul class="lista-vivencias">
+                                <li>Nasceu como um bebê <button class="link-versiculo" onclick="abrirVersiculo('Lucas 2:7')">Lucas 2:7</button></li>
+                                <li>Cresceu e aprendeu <button class="link-versiculo" onclick="abrirVersiculo('Lucas 2:52')">Lucas 2:52</button></li>
+                                <li>Trabalhou como carpinteiro <button class="link-versiculo" onclick="abrirVersiculo('Marcos 6:3')">Marcos 6:3</button></li>
+                                <li>Sentiu fome <button class="link-versiculo" onclick="abrirVersiculo('Mateus 4:2')">Mateus 4:2</button></li>
+                                <li>Sentiu cansaço <button class="link-versiculo" onclick="abrirVersiculo('João 4:6')">João 4:6</button></li>
+                                <li>Precisou dormir <button class="link-versiculo" onclick="abrirVersiculo('Marcos 4:38')">Marcos 4:38</button></li>
+                                <li>Sentiu sede <button class="link-versiculo" onclick="abrirVersiculo('João 19:28')">João 19:28</button></li>
+                                <li>Teve amigos <button class="link-versiculo" onclick="abrirVersiculo('João 11:5')">João 11:5</button></li>
+                            </ul>
+                        </div>
+
+                        <div class="caixa-estudo">
+                            <p class="rotulo">Estudo · E José?</p>
+                            <p>
+                                José aparece pela última vez quando Jesus tem 12 anos
+                                (<button class="link-versiculo" onclick="abrirVersiculo('Lucas 2:42-43')">Lucas 2:42–43</button>).
+                                Depois disso, Jesus é chamado de “filho de Maria”
+                                (<button class="link-versiculo" onclick="abrirVersiculo('Marcos 6:3')">Marcos 6:3</button>)
+                                e, na cruz, entrega sua mãe aos cuidados de João
+                                (<button class="link-versiculo" onclick="abrirVersiculo('João 19:26-27')">João 19:26–27</button>).
+                            </p>
+                            <p>
+                                Por isso, muitos estudiosos entendem que José morreu antes do ministério de Jesus.
+                                Se foi assim, Jesus conheceu o luto dentro de casa e assumiu o sustento da família.
+                            </p>
+                            <p class="observacao">A Bíblia não registra a morte de José: é uma conclusão a partir do silêncio do texto.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                        <!-- ---------- CAPÍTULO 03 ---------- -->
+            <div class="capitulo" id="capitulo3">
+                <button class="capitulo-linha" onclick="abrirCapitulo(3)">
+                    <span class="capitulo-numero">03</span>
+                    <span class="capitulo-info">
+                        <span class="capitulo-ref">Hebreus 4:15 · João 11:35</span>
+                        <span class="capitulo-titulo">Jesus conheceu nossas dores</span>
+                    </span>
+                    <span class="capitulo-resumo">O Cristo sem pecado não foi indiferente: sentiu perda, angústia e compaixão.</span>
+                    <span class="capitulo-seta">→</span>
+                </button>
+
+                <div class="capitulo-detalhe">
+                    <div class="detalhe-grid">
+                        <div class="detalhe-texto">
+                            <p>
+                                Diante do túmulo do amigo Lázaro, Jesus chorou
+                                (<button class="link-versiculo" onclick="abrirVersiculo('João 11:35')">João 11:35</button>)
+                                — mesmo sabendo que iria ressuscitá-lo. No Getsêmani, disse que sua alma estava
+                                profundamente triste
+                                (<button class="link-versiculo" onclick="abrirVersiculo('Mateus 26:38')">Mateus 26:38</button>).
+                            </p>
+                            <p>
+                                Foi rejeitado na própria cidade
+                                (<button class="link-versiculo" onclick="abrirVersiculo('Lucas 4:29')">Lucas 4:29</button>)
+                                e o profeta Isaías já o chamava de “homem de dores”
+                                (<button class="link-versiculo" onclick="abrirVersiculo('Isaías 53:3')">Isaías 53:3</button>).
+                                Ele foi tentado em tudo como nós, mas sem pecado
+                                (<button class="link-versiculo" onclick="abrirVersiculo('Hebreus 4:15')">Hebreus 4:15</button>).
+                            </p>
+                        </div>
+                        <blockquote class="destaque">
+                            Deus entende a sua dor.
+                            <span class="destaque-ref">Ele não olha de longe: Ele esteve lá.</span>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+
+                        <!-- ---------- CAPÍTULO 04 ---------- -->
+            <div class="capitulo" id="capitulo4">
+                <button class="capitulo-linha" onclick="abrirCapitulo(4)">
+                    <span class="capitulo-numero">04</span>
+                    <span class="capitulo-info">
+                        <span class="capitulo-ref">Mateus 26–27 · Salmo 22</span>
+                        <span class="capitulo-titulo">O sofrimento e a cruz</span>
+                    </span>
+                    <span class="capitulo-resumo">Traído, abandonado e ferido, o Rei tomou sobre si a nossa culpa.</span>
+                    <span class="capitulo-seta">→</span>
+                </button>
+
+                <div class="capitulo-detalhe">
+                    <div class="detalhe-grid">
+                        <ul class="lista-vivencias">
+                            <li>Traído por um amigo <button class="link-versiculo" onclick="abrirVersiculo('Mateus 26:49')">Mateus 26:49</button></li>
+                            <li>Abandonado pelos discípulos <button class="link-versiculo" onclick="abrirVersiculo('Mateus 26:56')">Mateus 26:56</button></li>
+                            <li>Açoitado e zombado <button class="link-versiculo" onclick="abrirVersiculo('Mateus 27:26')">Mateus 27:26</button></li>
+                            <li>Clamou ao Pai na cruz <button class="link-versiculo" onclick="abrirVersiculo('Mateus 27:46')">Mateus 27:46</button></li>
+                            <li>Cumpriu a profecia do salmo <button class="link-versiculo" onclick="abrirVersiculo('Salmo 22:1')">Salmo 22:1</button></li>
+                        </ul>
+                        <blockquote class="destaque">
+                            “Pelas suas pisaduras fomos sarados.”
+                            <button class="link-versiculo destaque-ref" onclick="abrirVersiculo('Isaías 53:5')">Isaías 53:5</button>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+
+                        <!-- ---------- CAPÍTULO 05 ---------- -->
+            <div class="capitulo" id="capitulo5">
+                <button class="capitulo-linha" onclick="abrirCapitulo(5)">
+                    <span class="capitulo-numero">05</span>
+                    <span class="capitulo-info">
+                        <span class="capitulo-ref">Romanos 5:12–21</span>
+                        <span class="capitulo-titulo">A humanidade redimida</span>
+                    </span>
+                    <span class="capitulo-resumo">Em Cristo, o novo Adão, começa uma nova história para toda a humanidade.</span>
+                    <span class="capitulo-seta">→</span>
+                </button>
+
+                <div class="capitulo-detalhe">
+                    <div class="detalhe-grid">
+                        <div class="detalhe-texto">
+                            <p>
+                                A humanidade de Jesus não é um detalhe: ela faz parte da obra de salvação.
+                                Só um homem poderia representar a humanidade; só Deus poderia vencer o pecado e a morte.
+                            </p>
+                            <p>
+                                Pela desobediência de um homem, Adão, todos foram afetados; pela obediência de um homem,
+                                Jesus, muitos são feitos justos
+                                (<button class="link-versiculo" onclick="abrirVersiculo('Romanos 5:19')">Romanos 5:19</button>).
+                                Em Adão todos morrem; em Cristo todos serão vivificados
+                                (<button class="link-versiculo" onclick="abrirVersiculo('1 Coríntios 15:22')">1 Coríntios 15:22</button>).
+                            </p>
+                        </div>
+                        <blockquote class="destaque">
+                            O novo Adão abriu o caminho de volta para casa.
+                            <button class="link-versiculo destaque-ref" onclick="abrirVersiculo('Romanos 5:12-21')">Romanos 5:12–21</button>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+                        <!-- Fechamento da jornada com Hebreus 4:15–16 -->
+            <div class="versiculo-final">
+                <p class="rotulo">Por isso</p>
+                <p class="versiculo-final-texto">
+                    “Cheguemos, pois, com confiança ao trono da graça, para que possamos alcançar
+                    misericórdia e achar graça.”
+                </p>
+                <button class="link-versiculo" onclick="abrirVersiculo('Hebreus 4:15-16')">Hebreus 4:15–16</button>
             </div>
         </div>
-    </article>
-    </div>
-    </div>
     </section>
+    
 
+
+
+
+
+
+
+
+
+    <!-- ===== FIM DAS SEÇÕES (as seções do site ficam ACIMA desta linha) ===== -->
+
+
+   
+    
 </body>
 
 </html>
