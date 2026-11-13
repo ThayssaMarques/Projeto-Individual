@@ -706,3 +706,77 @@ button {
     text-transform: uppercase;
     color: var(--dourado);
 }
+
+/* ---------- 8. JANELA DO VERSÍCULO (MODAL) ---------- */
+.modal-fundo {
+    display: none;             /* escondida no início */
+    position: fixed;           /* cobre a tela inteira, mesmo rolando */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 18, 34, 0.7);   /* fundo escuro semitransparente */
+    z-index: 200;              /* acima do cabeçalho (100) */
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+/* O JavaScript adiciona "aberto" e a janela aparece centralizada */
+.modal-fundo.aberto {
+    display: flex;
+}
+
+.modal-caixa {
+    position: relative;
+    width: 100%;
+    max-width: 540px;
+    background-color: var(--branco);
+    border-radius: 6px 40px 6px 6px;
+    padding: 40px;
+    animation: aparecer 0.3s;  /* usa a animação definida logo abaixo */
+}
+
+/* @keyframes define uma animação: do estado "from" para o "to" */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-fechar {
+    position: absolute;
+    top: 14px;
+    right: 22px;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--texto-suave);
+}
+
+.modal-referencia {
+    font-family: var(--fonte-titulo);
+    font-weight: 500;
+    font-size: 32px;
+    color: var(--azul-noite);
+    margin-bottom: 14px;
+}
+
+.modal-texto {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--texto);
+    white-space: pre-line;     /* respeita as quebras de linha (\n) do texto vindo do JS */
+}
+
+.modal-traducao {
+    margin-top: 18px;
+    font-size: 11px;
+    color: var(--texto-suave);
+}

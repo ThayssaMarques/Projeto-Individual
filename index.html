@@ -154,38 +154,42 @@
             </div>
         </div>
           <!-- ---------- CAPÍTULO 01 ---------- -->
-        <div class="ca´pitulo" id="capitulo1">
-            <button class="capitulo-linha" onclick="abirirCapitulo(1)">
-                <span class="capitulo-numero">01</span>
-                <span class="capitulo-info">
-                    <span class="capitulo-ref">João 1:14</span>
-                    <span class="capitulo-titulo">O Deus que se fez homem</span>
-                </span>
-                <span class="capitulo-resumo">O Deus criador dos céus e da Terra se despiu de sua glória e assumiu a forma de sua criação.</span>
-                <span class="capitulo-seta">→</span>
-            </button>
-            <div class="capitulo-detalhe">
-                <div class="detalhe-grid">
-                    <div class="detalhe-texto">
-                        <p>
-                            Antes de Belém, Jesus já existia: "No princípio era o Verbo"
-                            (<button class="link-versiculo" onclick="abrirVersiculo('João 1:1')">João 1:1</button>).
-                            O mesmo Verbo que deu vida à todas as coisas escolheu nascer como um bebê. E  indo contra tudo que o povo da época acreditava, não veio em uma família rica,
-                             mas numa familia simples, numa cidade pequena.
-                             </p>
-                             <p>
+                    <!-- ---------- CAPÍTULO 01 ---------- -->
+            <div class="capitulo" id="capitulo1">
+                <button class="capitulo-linha" onclick="abrirCapitulo(1)">
+                    <span class="capitulo-numero">01</span>
+                    <span class="capitulo-info">
+                        <span class="capitulo-ref">João 1:14</span>
+                        <span class="capitulo-titulo">O Deus que se fez homem</span>
+                    </span>
+                    <span class="capitulo-resumo">A eternidade entrou no tempo. O Criador assumiu carne e habitou entre nós.</span>
+                    <span class="capitulo-seta">→</span>
+                </button>
+
+                <div class="capitulo-detalhe">
+                    <div class="detalhe-grid">
+                        <div class="detalhe-texto">
+                            <p>
+                                Antes de Belém, Jesus já existia: “No princípio era o Verbo”
+                                (<button class="link-versiculo" onclick="abrirVersiculo('João 1:1')">João 1:1</button>).
+                             O mesmo Verbo que deu vida à todas as coisas escolheu nascer como um bebê. 
+                             E indo contra tudo que o povo da época acreditava, não veio em uma família rica, mas numa familia simples e em uma cidade pequena.
+
+                            </p>
+                            <p>
                                 Na plenitude dos tempos, Deus enviou seu Filho, nascido de mulher
                                 (<button class="link-versiculo" onclick="abrirVersiculo('Gálatas 4:4')">Gálatas 4:4</button>).
                                 Ele não apenas pareceu humano — Ele se tornou humano, sem deixar de ser Deus.
                             </p>
-                    </div>
-                    <blockquote class="destaque">
+                        </div>
+                        <blockquote class="destaque">
                             “E o Verbo se fez carne.”
                             <button class="link-versiculo destaque-ref" onclick="abrirVersiculo('João 1:14')">João 1:14</button>
                         </blockquote>
+                    </div>
                 </div>
             </div>
-        </div>
+          
 
                     <!-- ---------- CAPÍTULO 02 ---------- -->
             <div class="capitulo" id="capitulo2">
@@ -360,7 +364,15 @@
     <!-- ===== FIM DAS SEÇÕES (as seções do site ficam ACIMA desta linha) ===== -->
 
 
-   
+     
+    <div class="modal-fundo" id="modalVersiculo" onclick="clicarFundoModal(event)">
+        <div class="modal-caixa">
+            <button class="modal-fechar" onclick="fecharVersiculo()" aria-label="Fechar">×</button>
+            <p class="rotulo">Palavra</p>
+            <h3 class="modal-referencia" id="modalReferencia"></h3>
+            <p class="modal-texto" id="modalTexto"></p>
+            <p class="modal-traducao">Tradução Almeida</p>
+        </div>
     
 </body>
 
