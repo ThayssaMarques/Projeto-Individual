@@ -1,37 +1,20 @@
-/* =========================================================
-   1. MENU DO CELULAR
-   ========================================================= */
 
-// Chamada pelo botão ☰. classList.toggle("x") funciona como um interruptor:
-// se o elemento NÃO tem a classe, adiciona; se JÁ tem, remove.
-// O CSS mostra o menu quando ele tem a classe "menu-aberto".
 function abrirFecharMenu() {
     let menu = document.getElementById("menu");
     menu.classList.toggle("menu-aberto");
 }
 
-// Chamada ao clicar em um link do menu: fecha o menu no celular.
+
 function fecharMenu() {
     let menu = document.getElementById("menu");
     menu.classList.remove("menu-aberto");
 }
-/* =========================================================
-   2. CAPÍTULOS DA JORNADA
-   Cada capítulo tem id "capitulo1", "capitulo2"...
-   Juntando o texto "capitulo" com o número, achamos o certo.
-   ========================================================= */
+
 function abrirCapitulo(numero) {
     let capitulo = document.getElementById("capitulo" + numero);
-    capitulo.classList.toggle("aberto");   // abre se estava fechado, fecha se estava aberto
+    capitulo.classList.toggle("aberto");   
 }
-/* =========================================================
-   3. VERSÍCULOS
-   CONCEITO NOVO — OBJETO: guarda informações em pares "chave: valor".
-   Aqui a chave é a referência (ex.: "João 1:14") e o valor é o texto.
-   Para buscar um texto: versiculos["João 1:14"]
-   Para adicionar um versículo novo, é só incluir mais uma linha.
-   "\n" dentro do texto significa "quebra de linha".
-   ========================================================= */
+
 let versiculos = {
     "João 1:1": "No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus.",
     "João 1:14": "E o Verbo se fez carne e habitou entre nós, e vimos a sua glória, como a glória do unigênito do Pai, cheio de graça e de verdade.",
@@ -71,21 +54,18 @@ let versiculos = {
     "Mateus 6:34": "Não vos inquieteis, pois, pelo dia de amanhã, porque o dia de amanhã cuidará de si mesmo. Basta a cada dia o seu mal."
 };
 
-// Abre a janela com o versículo. Recebe a referência pelo onclick do HTML.
-// Exemplo: onclick="abrirVersiculo('João 1:14')"
+
 function abrirVersiculo(referencia) {
     let texto = versiculos[referencia];
 
-    // Se a referência não existir no objeto, o resultado é "undefined"
     if (texto == undefined) {
         texto = "Versículo ainda não cadastrado.";
     }
 
-    // innerHTML troca o conteúdo de dentro do elemento
+    
     document.getElementById("modalReferencia").innerHTML = referencia;
     document.getElementById("modalTexto").innerHTML = texto;
 
-    // A classe "aberto" faz o CSS mostrar a janela (display: flex)
     document.getElementById("modalVersiculo").classList.add("aberto");
 }
 
@@ -93,16 +73,13 @@ function fecharVersiculo() {
     document.getElementById("modalVersiculo").classList.remove("aberto");
 }
 
-// Fecha a janela ao clicar no fundo escuro (mas não ao clicar na caixa branca).
-// "evento" traz informações do clique. evento.target é o elemento exato clicado.
+
 function clicarFundoModal(evento) {
     if (evento.target.id == "modalVersiculo") {
         fecharVersiculo();
     }
 }
 
-// CONCEITO NOVO — addEventListener: "fica escutando" um acontecimento.
-// Aqui escutamos as teclas: se apertar Esc, a janela fecha.
 document.addEventListener("keydown", function (evento) {
     if (evento.key == "Escape") {
         fecharVersiculo();

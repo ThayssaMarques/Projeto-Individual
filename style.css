@@ -1,107 +1,73 @@
-/* =========================================================
-   O HOMEM-DEUS — style.css
-   Um único arquivo de estilos para TODAS as páginas
-   (index.html, login.html e cadastro.html).
-
-   Organização (na mesma ordem das tasks do guia de estudo):
-    1. Variáveis (cores e fontes)
-    2. Reset básico
-    3. Classes reutilizáveis
-    4. Cabeçalho e menu
-    5. Hero (capa)
-    6. Duas naturezas (cards)
-    7. Humanidade (capítulos)
-    8. Janela do versículo (modal)
-    9. Evangelhos (gráfico)
-   10. Ditados
-   11. Quiz
-   12. Rodapé
-   13. Login e cadastro
-   14. Responsividade (celular e tablet)
-   ========================================================= */
-
-   /* ---------- 1. VARIÁVEIS ----------
-   :root é o elemento <html>. Variáveis criadas aqui começam com --
-   e podem ser usadas em qualquer lugar com var(--nome).
-   Vantagem: para trocar uma cor do site inteiro, mudamos em UM lugar só. */
 :root {
-    --azul-noite: #0b2a4b;      /* azul bem escuro: card 100% Deus, seção humanidade */
-    --azul-profundo: #071a30;   /* ainda mais escuro: rodapé */
-    --azul-medio: #1e5a9e;      /* azul vivo: textos em itálico e destaques */
-    --azul-claro: #84acd6;      /* azul suave: itálicos em fundo escuro */
-    --azul-gelo: #bcd3eb;       /* azul quase branco */
-    --azul-nevoa: #e7f0fb;      /* fundo de ícones e cards claros */
-    --fundo-claro: #f3f8fd;     /* fundo das seções claras */
-    --dourado: #d8b66d;         /* o "DEUS" da capa: lembra o pôr do sol na água */
-    --texto: #10233b;           /* cor principal dos textos */
-    --texto-suave: #5b6b80;     /* textos secundários */
-    --borda: #dbe6f2;           /* linhas e bordas finas */
+    --azul-noite: #0b2a4b;
+    --azul-profundo: #071a30;
+    --azul-medio: #1e5a9e;
+    --azul-claro: #84acd6;
+    --azul-gelo: #bcd3eb;
+    --azul-nevoa: #e7f0fb;
+    --fundo-claro: #f3f8fd;
+    --dourado: #d8b66d;
+    --texto: #10233b;
+    --texto-suave: #5b6b80;
+    --borda: #dbe6f2;
     --branco: #ffffff;
 
-    --fonte-titulo: 'Cormorant Garamond', Georgia, serif;   /* serifada e elegante */
-    --fonte-texto: 'DM Sans', Arial, sans-serif;            /* limpa e legível */
+    --fonte-titulo: 'Cormorant Garamond', Georgia, serif;
+    --fonte-texto: 'DM Sans', Arial, sans-serif;
 }
-/* ---------- 2. RESET BÁSICO ----------
-   Os navegadores colocam margens automáticas em vários elementos.
-   Zeramos tudo para ter controle total do espaçamento. */
+
 * {
     margin: 0;
     padding: 0;
-    /* border-box: o padding e a borda ficam DENTRO da largura definida.
-       Assim, um elemento com width: 100% + padding não "estoura" a tela. */
+
     box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;   /* ao clicar em um link #secao, a página rola suavemente */
-    scroll-padding-top: 64px;  /* desconta a altura do cabeçalho fixo ao rolar até uma seção */
+    scroll-behavior: smooth;
+    scroll-padding-top: 64px;
 }
 
 body {
     font-family: var(--fonte-texto);
     color: var(--texto);
     background-color: var(--branco);
-    line-height: 1.6;          /* espaço entre linhas: deixa o texto mais confortável de ler */
+    line-height: 1.6;
 }
 
 a {
-    color: inherit;            /* o link herda a cor do elemento pai (em vez do azul padrão) */
-    text-decoration: none;     /* tira o sublinhado */
+    color: inherit;
+    text-decoration: none;
 }
 
 button {
-    font-family: inherit;      /* botões não herdam a fonte sozinhos, então forçamos */
-    cursor: pointer;           /* mãozinha ao passar o mouse */
+    font-family: inherit;
+    cursor: pointer;
     border: none;
     background: none;
     color: inherit;
 }
-/* ---------- 3. CLASSES REUTILIZÁVEIS ---------- */
 
-/* .container centraliza o conteúdo e limita a largura em telas grandes */
 .container {
     width: 100%;
-    max-width: 1200px;         /* nunca passa de 1200px */
-    margin: 0 auto;            /* "auto" nas laterais = centralizado */
-    padding: 0 32px;           /* respiro nas laterais */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
 }
 
-/* Pequeno texto em caixa alta que aparece acima dos títulos */
 .rotulo {
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 3px;       /* espaço entre as letras: visual sofisticado */
-    text-transform: uppercase; /* transforma em MAIÚSCULAS sem mudar o HTML */
+    letter-spacing: 3px;
+    text-transform: uppercase;
     color: var(--azul-medio);
     margin-bottom: 16px;
 }
 
-/* Títulos grandes das seções */
 .titulo-secao {
     font-family: var(--fonte-titulo);
     font-weight: 400;
-    /* clamp(mínimo, ideal, máximo): o tamanho acompanha a largura da tela (vw),
-       mas nunca fica menor que 40px nem maior que 64px. Ótimo para responsividade. */
+
     font-size: clamp(40px, 5vw, 64px);
     line-height: 1.05;
     color: var(--azul-noite);
@@ -124,28 +90,26 @@ button {
     font-weight: 500;
 }
 
-/* Botão de referência bíblica: parece um texto com sublinhado pontilhado */
 .link-versiculo {
-    font: inherit;             /* usa o mesmo tamanho/fonte do texto em volta */
+    font: inherit;
     letter-spacing: inherit;
     text-transform: inherit;
     color: inherit;
-    border-bottom: 1px dashed currentColor;  /* currentColor = a cor atual do texto */
+    border-bottom: 1px dashed currentColor;
     padding: 0;
-    transition: color 0.2s;    /* a troca de cor acontece em 0.2s (suave) */
+    transition: color 0.2s;
 }
 
 .link-versiculo:hover {
     color: var(--dourado);
 }
 
-/* Botão principal (azul, arredondado) usado no quiz, login e cadastro */
 .botao-principal {
     width: 100%;
     background-color: var(--azul-noite);
     color: var(--branco);
     padding: 15px;
-    border-radius: 999px;      /* valor alto = cantos totalmente arredondados (formato pílula) */
+    border-radius: 999px;
     font-size: 14px;
     font-weight: 600;
     transition: background-color 0.2s;
@@ -155,40 +119,38 @@ button {
     background-color: var(--azul-medio);
 }
 
-/* ---------- 4. CABEÇALHO E MENU ---------- */
 .cabecalho {
-    position: fixed;           /* fica preso no topo mesmo rolando a página */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 100;              /* fica "por cima" dos outros elementos */
-    background: linear-gradient(180deg, #0d2a4a, #15395f);   /* degradê de cima para baixo */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);       /* linha branca quase transparente */
+    z-index: 100;
+    background: linear-gradient(180deg, #0d2a4a, #15395f);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .cabecalho-conteudo {
-    display: flex;             /* flexbox: coloca logo e menu lado a lado */
-    align-items: center;       /* centraliza na vertical */
-    justify-content: space-between;  /* logo na esquerda, menu na direita */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     height: 64px;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;                 /* espaço entre o ícone e o texto */
+    gap: 12px;
     color: var(--branco);
     font-weight: 700;
     font-size: 13px;
     letter-spacing: 2px;
 }
 
-/* Círculo com a cruz */
 .logo-icone {
     width: 32px;
     height: 32px;
     border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 50%;        /* 50% transforma o quadrado em círculo */
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -238,16 +200,14 @@ button {
     border-radius: 999px;
 }
 
-/* Botão hambúrguer: escondido no computador, aparece no celular (ver seção 14) */
 .botao-menu {
     display: none;
     color: var(--branco);
     font-size: 24px;
 }
 
-/* ---------- 5. HERO (CAPA) ---------- */
 .hero {
-    min-height: 100vh;         /* 100vh = 100% da altura da tela */
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -255,20 +215,14 @@ button {
     padding: 120px 24px 80px;
     color: var(--branco);
     background-color: #0b2340;
-    /* Várias camadas de fundo, separadas por vírgula (a primeira fica por cima):
-       1) um degradê escuro para o texto ficar legível;
-       2) a foto (coloque a sua em img/hero-agua.jpg);
-       3) um brilho dourado, como o sol refletindo na água;
-       4) linhas finas que imitam as ondas;
-       5) o azul de fundo.
-       Se a foto não existir, as camadas 3, 4 e 5 continuam aparecendo. */
+
     background-image:
         linear-gradient(180deg, rgba(10, 30, 55, 0.45), rgba(8, 24, 44, 0.9)),
         url("img/hero-agua.jpg"),
         radial-gradient(ellipse at 50% 45%, rgba(216, 182, 109, 0.28), transparent 60%),
         repeating-linear-gradient(178deg, rgba(255, 255, 255, 0.05) 0 2px, transparent 2px 14px),
         linear-gradient(180deg, #2c4a63, #0b2340);
-    background-size: cover;    /* a imagem cobre toda a área, sem deformar */
+    background-size: cover;
     background-position: center;
 }
 
@@ -321,7 +275,7 @@ button {
 }
 
 .botao-hero {
-    display: inline-flex;      /* inline-flex: fica do tamanho do conteúdo, mas organiza por dentro */
+    display: inline-flex;
     align-items: center;
     gap: 18px;
     background-color: var(--branco);
@@ -334,29 +288,27 @@ button {
 }
 
 .botao-hero:hover {
-    transform: translateY(-2px);   /* sobe 2px: efeito de "levantar" */
+    transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* ---------- 6. DUAS NATUREZAS ---------- */
 .naturezas {
     background-color: var(--fundo-claro);
     padding: 120px 0;
 }
 
 .cards-naturezas {
-    display: grid;             /* grid: organiza em linhas e colunas */
-    grid-template-columns: repeat(2, 1fr);   /* 2 colunas de mesmo tamanho (1fr = 1 fração) */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
     margin-top: 64px;
 }
 
 .card-natureza {
-    position: relative;        /* permite posicionar o número "01" dentro do card */
+    position: relative;
     background-color: var(--branco);
     border: 1px solid var(--borda);
-    /* 4 valores: superior-esquerdo, superior-direito, inferior-direito, inferior-esquerdo.
-       O canto superior direito maior é a marca visual do protótipo. */
+
     border-radius: 16px 48px 16px 16px;
     padding: 44px;
 }
@@ -368,7 +320,7 @@ button {
 }
 
 .card-numero {
-    position: absolute;        /* posicionado em relação ao card (que é relative) */
+    position: absolute;
     top: 24px;
     right: 32px;
     font-family: var(--fonte-titulo);
@@ -426,15 +378,14 @@ button {
 }
 
 .lista-check {
-    list-style: none;          /* tira as bolinhas da lista */
+    list-style: none;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px 20px;            /* 10px entre linhas, 20px entre colunas */
+    gap: 10px 20px;
     margin: 26px 0;
     font-size: 12.5px;
 }
 
-/* ::before cria um "pedaço" antes do conteúdo do <li>, sem mexer no HTML */
 .lista-check li::before {
     content: "✓";
     color: var(--azul-medio);
@@ -484,7 +435,6 @@ button {
     color: var(--azul-gelo);
 }
 
-/* ---------- 7. HUMANIDADE (CAPÍTULOS) ---------- */
 .humanidade {
     background-color: var(--azul-noite);
     color: var(--branco);
@@ -507,7 +457,7 @@ button {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 48px;
-    align-items: end;          /* alinha os dois lados pela base */
+    align-items: end;
     margin-bottom: 56px;
 }
 
@@ -525,8 +475,6 @@ button {
     border-bottom: 1px solid rgba(255, 255, 255, 0.14);
 }
 
-/* A linha do capítulo é um <button> organizado em 4 colunas:
-   número | título | resumo | seta */
 .capitulo-linha {
     display: grid;
     grid-template-columns: 50px 1.1fr 1.4fr 40px;
@@ -540,12 +488,12 @@ button {
 .capitulo-numero {
     font-family: var(--fonte-titulo);
     font-size: 16px;
-    opacity: 0.6;              /* deixa 60% visível (mais apagado) */
+    opacity: 0.6;
 }
 
 .capitulo-info {
     display: flex;
-    flex-direction: column;    /* coloca a referência em cima e o título embaixo */
+    flex-direction: column;
 }
 
 .capitulo-ref {
@@ -583,21 +531,17 @@ button {
     transition: transform 0.3s, background-color 0.3s, color 0.3s;
 }
 
-/* Quando o capítulo tem a classe "aberto" (colocada pelo JS),
-   a seta gira 90° e fica branca */
 .capitulo.aberto .capitulo-seta {
     transform: rotate(90deg);
     background-color: var(--branco);
     color: var(--azul-noite);
 }
 
-/* O detalhe começa escondido... */
 .capitulo-detalhe {
     display: none;
     padding: 0 0 44px 74px;
 }
 
-/* ...e aparece quando o capítulo está "aberto" */
 .capitulo.aberto .capitulo-detalhe {
     display: block;
 }
@@ -635,7 +579,7 @@ button {
 
 .lista-vivencias li {
     display: flex;
-    justify-content: space-between;  /* texto na esquerda, referência na direita */
+    justify-content: space-between;
     gap: 16px;
     padding: 10px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -644,7 +588,7 @@ button {
 
 .lista-vivencias .link-versiculo {
     font-size: 12px;
-    white-space: nowrap;       /* a referência não quebra em duas linhas */
+    white-space: nowrap;
 }
 
 .destaque {
@@ -707,22 +651,20 @@ button {
     color: var(--dourado);
 }
 
-/* ---------- 8. JANELA DO VERSÍCULO (MODAL) ---------- */
 .modal-fundo {
-    display: none;             /* escondida no início */
-    position: fixed;           /* cobre a tela inteira, mesmo rolando */
+    display: none;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(5, 18, 34, 0.7);   /* fundo escuro semitransparente */
-    z-index: 200;              /* acima do cabeçalho (100) */
+    background-color: rgba(5, 18, 34, 0.7);
+    z-index: 200;
     align-items: center;
     justify-content: center;
     padding: 24px;
 }
 
-/* O JavaScript adiciona "aberto" e a janela aparece centralizada */
 .modal-fundo.aberto {
     display: flex;
 }
@@ -734,10 +676,9 @@ button {
     background-color: var(--branco);
     border-radius: 6px 40px 6px 6px;
     padding: 40px;
-    animation: aparecer 0.3s;  /* usa a animação definida logo abaixo */
+    animation: aparecer 0.3s;
 }
 
-/* @keyframes define uma animação: do estado "from" para o "to" */
 @keyframes aparecer {
     from {
         opacity: 0;
@@ -772,7 +713,7 @@ button {
     font-size: 22px;
     line-height: 1.5;
     color: var(--texto);
-    white-space: pre-line;     /* respeita as quebras de linha (\n) do texto vindo do JS */
+    white-space: pre-line;
 }
 
 .modal-traducao {
