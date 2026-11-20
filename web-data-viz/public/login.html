@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar · O Homem-Deus</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Mesmo CSS do site: mantém a identidade visual -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- A página é dividida em 2 lados (grid de 2 colunas, ver .acesso no CSS) -->
+    <main class="acesso">
+
+        <!-- LADO ESQUERDO: imagem azul com a frase -->
+        <section class="acesso-lado-azul">
+            <a href="index.html" class="logo">
+                <span class="logo-icone">†</span>
+                O HOMEM-DEUS
+            </a>
+
+            <p class="acesso-citacao">
+                Plenamente humano,<br><em>eternamente divino.</em>
+                <span>100% HOMEM • 100% DEUS</span>
+            </p>
+        </section>
+
+        <!-- LADO DIREITO: formulário -->
+        <section class="acesso-formulario">
+            <div class="caixa-formulario">
+
+                <a href="index.html" class="voltar">← Voltar ao início</a>
+
+                <p class="rotulo">Bem-vindo de volta</p>
+                <h1 class="titulo-secao">Entrar na <em>jornada</em></h1>
+                <p class="texto-secao">Acesse sua conta para continuar de onde parou.</p>
+
+                <!-- Cada campo: um <label> (texto) ligado ao <input> pelo "for" = "id" -->
+                <div class="campo">
+                    <label for="inputEmail">E-mail</label>
+                    <input type="email" id="inputEmail" placeholder="seuemail@exemplo.com">
+                </div>
+
+                <div class="campo">
+                    <label for="inputSenha">Senha</label>
+                    <div class="campo-senha">
+                        <input type="password" id="inputSenha" placeholder="Digite sua senha">
+                        <!-- "this" envia o próprio botão para a função (para trocar o texto dele) -->
+                        <button type="button" class="botao-olho" onclick="mostrarSenha('inputSenha', this)">Mostrar</button>
+                    </div>
+                </div>
+
+                <!-- Aqui aparecem os erros e o sucesso (preenchido pelo auth.js) -->
+                <div class="mensagem" id="mensagem"></div>
+
+                <button class="botao-principal" onclick="entrar()">Entrar →</button>
+
+                <p class="troca">Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+            </div>
+        </section>
+    </main>
+
+    <script src="auth.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1592 @@
+/* =========================================================
+   O HOMEM-DEUS — style.css
+   Um único arquivo de estilos para TODAS as páginas
+   (index.html, login.html e cadastro.html).
+
+   Organização:
+    1. Variáveis (cores e fontes)
+    2. Reset básico
+    3. Classes reutilizáveis
+    4. Cabeçalho e menu
+    5. Hero (capa)
+    6. Duas naturezas (cards)
+    7. Humanidade (capítulos)
+    8. Evangelhos (gráfico)
+    9. Ditados
+   10. Quiz
+   11. Rodapé
+   12. Janela do versículo (modal)
+   13. Login e cadastro
+   14. Responsividade (celular e tablet)
+   ========================================================= */
+
+
+/* ---------- 1. VARIÁVEIS ----------
+   :root é o elemento <html>. Variáveis criadas aqui começam com --
+   e podem ser usadas em qualquer lugar com var(--nome).
+   Vantagem: para trocar uma cor do site inteiro, mudamos em UM lugar só. */
+:root {
+    --azul-noite: #0b2a4b;      /* azul bem escuro: card 100% Deus, seção humanidade */
+    --azul-profundo: #071a30;   /* ainda mais escuro: rodapé */
+    --azul-medio: #1e5a9e;      /* azul vivo: textos em itálico e destaques */
+    --azul-claro: #84acd6;      /* azul suave: itálicos em fundo escuro */
+    --azul-gelo: #bcd3eb;       /* azul quase branco */
+    --azul-nevoa: #e7f0fb;      /* fundo de ícones e cards claros */
+    --fundo-claro: #f3f8fd;     /* fundo das seções claras */
+    --dourado: #d8b66d;         /* o "DEUS" da capa: lembra o pôr do sol na água */
+    --texto: #10233b;           /* cor principal dos textos */
+    --texto-suave: #5b6b80;     /* textos secundários */
+    --borda: #dbe6f2;           /* linhas e bordas finas */
+    --branco: #ffffff;
+
+    --fonte-titulo: 'Cormorant Garamond', Georgia, serif;   /* serifada e elegante */
+    --fonte-texto: 'DM Sans', Arial, sans-serif;            /* limpa e legível */
+}
+
+
+/* ---------- 2. RESET BÁSICO ----------
+   Os navegadores colocam margens automáticas em vários elementos.
+   Zeramos tudo para ter controle total do espaçamento. */
+* {
+    margin: 0;
+    padding: 0;
+    /* border-box: o padding e a borda ficam DENTRO da largura definida.
+       Assim, um elemento com width: 100% + padding não "estoura" a tela. */
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;   /* ao clicar em um link #secao, a página rola suavemente */
+    scroll-padding-top: 64px;  /* desconta a altura do cabeçalho fixo ao rolar até uma seção */
+}
+
+body {
+    font-family: var(--fonte-texto);
+    color: var(--texto);
+    background-color: var(--branco);
+    line-height: 1.6;          /* espaço entre linhas: deixa o texto mais confortável de ler */
+}
+
+a {
+    color: inherit;            /* o link herda a cor do elemento pai (em vez do azul padrão) */
+    text-decoration: none;     /* tira o sublinhado */
+}
+
+button {
+    font-family: inherit;      /* botões não herdam a fonte sozinhos, então forçamos */
+    cursor: pointer;           /* mãozinha ao passar o mouse */
+    border: none;
+    background: none;
+    color: inherit;
+}
+
+
+/* ---------- 3. CLASSES REUTILIZÁVEIS ---------- */
+
+/* .container centraliza o conteúdo e limita a largura em telas grandes */
+.container {
+    width: 100%;
+    max-width: 1200px;         /* nunca passa de 1200px */
+    margin: 0 auto;            /* "auto" nas laterais = centralizado */
+    padding: 0 32px;           /* respiro nas laterais */
+}
+
+/* Pequeno texto em caixa alta que aparece acima dos títulos */
+.rotulo {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;       /* espaço entre as letras: visual sofisticado */
+    text-transform: uppercase; /* transforma em MAIÚSCULAS sem mudar o HTML */
+    color: var(--azul-medio);
+    margin-bottom: 16px;
+}
+
+/* Títulos grandes das seções */
+.titulo-secao {
+    font-family: var(--fonte-titulo);
+    font-weight: 400;
+    /* clamp(mínimo, ideal, máximo): o tamanho acompanha a largura da tela (vw),
+       mas nunca fica menor que 40px nem maior que 64px. Ótimo para responsividade. */
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1.05;
+    color: var(--azul-noite);
+}
+
+.titulo-secao em {
+    font-style: italic;
+    color: var(--azul-medio);
+}
+
+.texto-secao {
+    font-size: 14px;
+    color: var(--texto-suave);
+    max-width: 460px;
+    margin-top: 20px;
+}
+
+.texto-secao strong {
+    color: var(--azul-medio);
+    font-weight: 500;
+}
+
+/* Botão de referência bíblica: parece um texto com sublinhado pontilhado */
+.link-versiculo {
+    font: inherit;             /* usa o mesmo tamanho/fonte do texto em volta */
+    letter-spacing: inherit;
+    text-transform: inherit;
+    color: inherit;
+    border-bottom: 1px dashed currentColor;  /* currentColor = a cor atual do texto */
+    padding: 0;
+    transition: color 0.2s;    /* a troca de cor acontece em 0.2s (suave) */
+}
+
+.link-versiculo:hover {
+    color: var(--dourado);
+}
+
+/* Botão principal (azul, arredondado) usado no quiz, login e cadastro */
+.botao-principal {
+    width: 100%;
+    background-color: var(--azul-noite);
+    color: var(--branco);
+    padding: 15px;
+    border-radius: 999px;      /* valor alto = cantos totalmente arredondados (formato pílula) */
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.botao-principal:hover {
+    background-color: var(--azul-medio);
+}
+
+
+/* ---------- 4. CABEÇALHO E MENU ---------- */
+.cabecalho {
+    position: fixed;           /* fica preso no topo mesmo rolando a página */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;              /* fica "por cima" dos outros elementos */
+    background: linear-gradient(180deg, #0d2a4a, #15395f);   /* degradê de cima para baixo */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);       /* linha branca quase transparente */
+}
+
+.cabecalho-conteudo {
+    display: flex;             /* flexbox: coloca logo e menu lado a lado */
+    align-items: center;       /* centraliza na vertical */
+    justify-content: space-between;  /* logo na esquerda, menu na direita */
+    height: 64px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;                 /* espaço entre o ícone e o texto */
+    color: var(--branco);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+/* Círculo com a cruz */
+.logo-icone {
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;        /* 50% transforma o quadrado em círculo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    color: var(--branco);
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.menu a {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.menu a:hover {
+    color: var(--branco);
+}
+
+.menu .menu-entrar {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 6px 18px;
+    border-radius: 999px;
+}
+
+.area-usuario {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.usuario-nome {
+    color: var(--azul-gelo);
+    font-size: 13px;
+}
+
+.botao-sair {
+    font-size: 12px;
+    color: var(--branco);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 5px 14px;
+    border-radius: 999px;
+}
+
+/* Botão hambúrguer: escondido no computador, aparece no celular (ver seção 14) */
+.botao-menu {
+    display: none;
+    color: var(--branco);
+    font-size: 24px;
+}
+
+
+/* ---------- 5. HERO (CAPA) ---------- */
+.hero {
+    min-height: 100vh;         /* 100vh = 100% da altura da tela */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    color: var(--branco);
+    background-color: #0b2340;
+    /* Várias camadas de fundo, separadas por vírgula (a primeira fica por cima):
+       1) um degradê escuro para o texto ficar legível;
+       2) a foto (coloque a sua em img/hero-agua.jpg);
+       3) um brilho dourado, como o sol refletindo na água;
+       4) linhas finas que imitam as ondas;
+       5) o azul de fundo.
+       Se a foto não existir, as camadas 3, 4 e 5 continuam aparecendo. */
+    background-image:
+        linear-gradient(180deg, rgba(10, 30, 55, 0.45), rgba(8, 24, 44, 0.9)),
+        url("img/hero-agua.jpg"),
+        radial-gradient(ellipse at 50% 45%, rgba(216, 182, 109, 0.28), transparent 60%),
+        repeating-linear-gradient(178deg, rgba(255, 255, 255, 0.05) 0 2px, transparent 2px 14px),
+        linear-gradient(180deg, #2c4a63, #0b2340);
+    background-size: cover;    /* a imagem cobre toda a área, sem deformar */
+    background-position: center;
+}
+
+.hero-referencia {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+}
+
+.linha {
+    width: 48px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.hero-titulo {
+    font-family: var(--fonte-titulo);
+    font-weight: 400;
+    font-size: clamp(54px, 10vw, 150px);
+    line-height: 1;
+}
+
+.hero-titulo em {
+    color: var(--dourado);
+}
+
+.hero-naturezas {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin: 28px 0;
+}
+
+.ponto {
+    color: var(--dourado);
+    margin: 0 12px;
+}
+
+.hero-subtitulo {
+    font-family: var(--fonte-titulo);
+    font-size: 21px;
+    max-width: 520px;
+    margin: 0 auto 36px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.botao-hero {
+    display: inline-flex;      /* inline-flex: fica do tamanho do conteúdo, mas organiza por dentro */
+    align-items: center;
+    gap: 18px;
+    background-color: var(--branco);
+    color: var(--azul-noite);
+    padding: 14px 24px 14px 26px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.botao-hero:hover {
+    transform: translateY(-2px);   /* sobe 2px: efeito de "levantar" */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ---------- 6. DUAS NATUREZAS ---------- */
+.naturezas {
+    background-color: var(--fundo-claro);
+    padding: 120px 0;
+}
+
+.cards-naturezas {
+    display: grid;             /* grid: organiza em linhas e colunas */
+    grid-template-columns: repeat(2, 1fr);   /* 2 colunas de mesmo tamanho (1fr = 1 fração) */
+    gap: 24px;
+    margin-top: 64px;
+}
+
+.card-natureza {
+    position: relative;        /* permite posicionar o número "01" dentro do card */
+    background-color: var(--branco);
+    border: 1px solid var(--borda);
+    /* 4 valores: superior-esquerdo, superior-direito, inferior-direito, inferior-esquerdo.
+       O canto superior direito maior é a marca visual do protótipo. */
+    border-radius: 16px 48px 16px 16px;
+    padding: 44px;
+}
+
+.card-escuro {
+    background-color: var(--azul-noite);
+    border-color: var(--azul-noite);
+    color: var(--branco);
+}
+
+.card-numero {
+    position: absolute;        /* posicionado em relação ao card (que é relative) */
+    top: 24px;
+    right: 32px;
+    font-family: var(--fonte-titulo);
+    font-size: 32px;
+    color: var(--azul-nevoa);
+}
+
+.card-escuro .card-numero {
+    color: rgba(255, 255, 255, 0.12);
+}
+
+.card-icone {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--azul-nevoa);
+    color: var(--azul-medio);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 26px;
+}
+
+.card-escuro .card-icone {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--branco);
+}
+
+.card-rotulo {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--azul-medio);
+}
+
+.card-escuro .card-rotulo {
+    color: var(--azul-claro);
+}
+
+.card-titulo {
+    font-family: var(--fonte-titulo);
+    font-size: 38px;
+    font-weight: 400;
+    margin: 6px 0 12px;
+}
+
+.card-texto {
+    font-size: 13px;
+    color: #3d628c;
+}
+
+.card-escuro .card-texto {
+    color: #a9c4e2;
+}
+
+.lista-check {
+    list-style: none;          /* tira as bolinhas da lista */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;            /* 10px entre linhas, 20px entre colunas */
+    margin: 26px 0;
+    font-size: 12.5px;
+}
+
+/* ::before cria um "pedaço" antes do conteúdo do <li>, sem mexer no HTML */
+.lista-check li::before {
+    content: "✓";
+    color: var(--azul-medio);
+    margin-right: 10px;
+}
+
+.card-escuro .lista-check li::before {
+    color: var(--azul-claro);
+}
+
+.card-referencia {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    border-top: 1px solid var(--borda);
+    padding-top: 22px;
+}
+
+.card-escuro .card-referencia {
+    border-top-color: rgba(255, 255, 255, 0.15);
+}
+
+.card-referencia-icone {
+    font-size: 16px;
+}
+
+.card-referencia-nome {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--azul-medio);
+}
+
+.card-escuro .card-referencia-nome {
+    color: var(--azul-claro);
+}
+
+.card-referencia-frase {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--texto-suave);
+}
+
+.card-escuro .card-referencia-frase {
+    color: var(--azul-gelo);
+}
+
+
+/* ---------- 7. HUMANIDADE (CAPÍTULOS) ---------- */
+.humanidade {
+    background-color: var(--azul-noite);
+    color: var(--branco);
+    padding: 120px 0;
+}
+
+.humanidade .rotulo {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.humanidade .titulo-secao {
+    color: var(--branco);
+}
+
+.humanidade .titulo-secao em {
+    color: var(--azul-claro);
+}
+
+.humanidade-topo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: end;          /* alinha os dois lados pela base */
+    margin-bottom: 56px;
+}
+
+.humanidade-descricao {
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 420px;
+}
+
+.capitulo {
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.capitulo:last-of-type {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+/* A linha do capítulo é um <button> organizado em 4 colunas:
+   número | título | resumo | seta */
+.capitulo-linha {
+    display: grid;
+    grid-template-columns: 50px 1.1fr 1.4fr 40px;
+    gap: 24px;
+    align-items: center;
+    width: 100%;
+    padding: 26px 0;
+    text-align: left;
+}
+
+.capitulo-numero {
+    font-family: var(--fonte-titulo);
+    font-size: 16px;
+    opacity: 0.6;              /* deixa 60% visível (mais apagado) */
+}
+
+.capitulo-info {
+    display: flex;
+    flex-direction: column;    /* coloca a referência em cima e o título embaixo */
+}
+
+.capitulo-ref {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-bottom: 8px;
+}
+
+.capitulo-titulo {
+    font-family: var(--fonte-titulo);
+    font-size: 26px;
+    transition: color 0.2s;
+}
+
+.capitulo-linha:hover .capitulo-titulo {
+    color: var(--azul-claro);
+}
+
+.capitulo-resumo {
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.capitulo-seta {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: transform 0.3s, background-color 0.3s, color 0.3s;
+}
+
+/* Quando o capítulo tem a classe "aberto" (colocada pelo JS),
+   a seta gira 90° e fica branca */
+.capitulo.aberto .capitulo-seta {
+    transform: rotate(90deg);
+    background-color: var(--branco);
+    color: var(--azul-noite);
+}
+
+/* O detalhe começa escondido... */
+.capitulo-detalhe {
+    display: none;
+    padding: 0 0 44px 74px;
+}
+
+/* ...e aparece quando o capítulo está "aberto" */
+.capitulo.aberto .capitulo-detalhe {
+    display: block;
+}
+
+.detalhe-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 48px;
+    align-items: start;
+}
+
+.detalhe-texto p,
+.caixa-estudo p {
+    font-size: 14.5px;
+    color: rgba(255, 255, 255, 0.82);
+    margin-bottom: 14px;
+}
+
+.detalhe-texto .link-versiculo,
+.caixa-estudo .link-versiculo,
+.lista-vivencias .link-versiculo {
+    color: var(--azul-claro);
+}
+
+.detalhe-subtitulo {
+    font-family: var(--fonte-titulo);
+    font-weight: 500;
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.lista-vivencias {
+    list-style: none;
+}
+
+.lista-vivencias li {
+    display: flex;
+    justify-content: space-between;  /* texto na esquerda, referência na direita */
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 14px;
+}
+
+.lista-vivencias .link-versiculo {
+    font-size: 12px;
+    white-space: nowrap;       /* a referência não quebra em duas linhas */
+}
+
+.destaque {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 30px;
+    line-height: 1.25;
+    color: var(--azul-gelo);
+    border-left: 2px solid var(--dourado);
+    padding-left: 24px;
+}
+
+.destaque-ref {
+    display: block;
+    margin-top: 12px;
+    font-family: var(--fonte-texto);
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dourado);
+}
+
+.caixa-estudo {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px 32px 12px 12px;
+    padding: 26px;
+}
+
+.caixa-estudo .rotulo {
+    color: var(--dourado);
+}
+
+.caixa-estudo .observacao {
+    font-size: 12px;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 0;
+}
+
+.versiculo-final {
+    text-align: center;
+    margin-top: 80px;
+}
+
+.versiculo-final-texto {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: clamp(24px, 3vw, 36px);
+    max-width: 760px;
+    margin: 0 auto 16px;
+    line-height: 1.3;
+}
+
+.versiculo-final .link-versiculo {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dourado);
+}
+
+
+/* ---------- 8. EVANGELHOS (GRÁFICO) ---------- */
+.evangelhos {
+    background-color: #edf4fc;
+    padding: 120px 0;
+}
+
+.evangelhos-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;   /* a coluna do gráfico é maior */
+    gap: 64px;
+    align-items: center;
+}
+
+.total-capitulos {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 40px;
+}
+
+.total-numero {
+    font-family: var(--fonte-titulo);
+    font-size: 56px;
+    line-height: 1;
+    color: var(--azul-medio);
+    padding-right: 16px;
+    border-right: 1px solid var(--borda);
+}
+
+.total-legenda {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+}
+
+.card-grafico {
+    background-color: var(--branco);
+    border-radius: 12px 40px 12px 12px;
+    padding: 32px;
+    /* box-shadow: deslocamento-x deslocamento-y desfoque cor */
+    box-shadow: 0 30px 60px rgba(11, 42, 75, 0.12);
+}
+
+.grafico-topo {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--borda);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--azul-noite);
+}
+
+.grafico-topo-direita {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+}
+
+/* IMPORTANTE para o Chart.js: o <canvas> precisa de uma "caixa"
+   com position: relative e altura definida para ser responsivo. */
+.grafico-area {
+    position: relative;
+    height: 300px;
+    margin-top: 20px;
+}
+
+/* Nomes embaixo das barras: 4 colunas iguais, alinhadas com as 4 barras */
+.legenda-grafico {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+    border-bottom: 1px solid var(--borda);
+    padding: 8px 0 10px;
+}
+
+.legenda-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.legenda-item:hover,
+.legenda-item.ativo {
+    background-color: var(--azul-nevoa);
+}
+
+.legenda-item strong {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--azul-noite);
+}
+
+.legenda-item em {
+    font-family: var(--fonte-titulo);
+    font-size: 14px;
+    color: var(--texto-suave);
+}
+
+.descricao-evangelho {
+    margin-top: 16px;
+    padding: 14px 18px;
+    background-color: var(--fundo-claro);
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--texto-suave);
+}
+
+.descricao-evangelho strong {
+    color: var(--azul-medio);
+}
+
+.grafico-nota {
+    margin-top: 16px;
+    font-size: 11px;
+    color: var(--texto-suave);
+}
+
+.grafico-nota strong {
+    color: var(--azul-medio);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-right: 10px;
+}
+
+
+/* ---------- 9. DITADOS ---------- */
+.ditados {
+    background-color: var(--branco);
+    padding: 120px 0;
+}
+
+.ditados-topo {
+    text-align: center;
+}
+
+.ditados-topo .texto-secao {
+    margin: 20px auto 0;       /* auto nas laterais: centraliza o parágrafo */
+}
+
+.grade-ditados {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    max-width: 860px;
+    margin: 48px auto 0;
+}
+
+.card-ditado {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;   /* tema em cima, referência embaixo */
+    min-height: 220px;
+    padding: 30px;
+    border: 1px solid var(--borda);
+    border-radius: 4px;
+    transition: transform 0.2s;
+}
+
+.card-ditado:hover {
+    transform: translateY(-3px);
+}
+
+.card-ditado-claro {
+    background-color: var(--azul-nevoa);
+    border-radius: 4px 36px 4px 4px;
+}
+
+.card-ditado-escuro {
+    background-color: var(--azul-noite);
+    border-color: var(--azul-noite);
+    color: var(--branco);
+}
+
+.ditado-aspas {
+    position: absolute;
+    top: 14px;
+    right: 24px;
+    font-family: var(--fonte-titulo);
+    font-size: 46px;
+    line-height: 1;
+    color: #a9c4e2;
+}
+
+.ditado-tema {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--azul-medio);
+}
+
+.card-ditado-escuro .ditado-tema {
+    color: var(--azul-claro);
+}
+
+.ditado-frase {
+    font-family: var(--fonte-titulo);
+    font-size: 27px;
+    line-height: 1.2;
+    margin: 22px 0;
+}
+
+.ditado-ref {
+    align-self: flex-start;    /* não estica: fica do tamanho do texto */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+    border-bottom: none;
+}
+
+/* Tracinho antes da referência */
+.ditado-ref::before {
+    content: "";
+    width: 24px;
+    height: 1px;
+    background-color: var(--azul-medio);
+}
+
+.card-ditado-escuro .ditado-ref {
+    color: var(--azul-gelo);
+}
+
+
+/* ---------- 10. QUIZ ---------- */
+.quiz {
+    background: linear-gradient(180deg, #163a63, #102f53);
+    color: var(--branco);
+    padding: 120px 0;
+}
+
+.quiz .rotulo {
+    color: var(--azul-claro);
+}
+
+.quiz .titulo-secao {
+    color: var(--branco);
+}
+
+.quiz .titulo-secao em {
+    color: var(--azul-claro);
+}
+
+.quiz .texto-secao {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.quiz-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 64px;
+    align-items: center;
+}
+
+.quiz-info {
+    display: flex;
+    gap: 24px;
+    margin-top: 32px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.card-quiz {
+    background-color: var(--branco);
+    color: var(--texto);
+    border-radius: 4px 40px 4px 4px;
+    padding: 36px 40px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+}
+
+.quiz-topo {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+}
+
+.barra-progresso {
+    height: 2px;
+    background-color: var(--borda);
+    margin: 14px 0 28px;
+}
+
+/* A largura desta barra é alterada pelo JavaScript (0%, 25%, 50%...) */
+.barra-preenchida {
+    height: 100%;
+    width: 0%;
+    background-color: var(--azul-medio);
+    transition: width 0.4s;    /* a barra cresce suavemente */
+}
+
+.quiz-pergunta {
+    font-family: var(--fonte-titulo);
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.2;
+    max-width: 440px;
+    margin-bottom: 24px;
+}
+
+.quiz-opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.opcao {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--borda);
+    border-radius: 2px;
+    text-align: left;
+    font-size: 13px;
+    color: var(--azul-medio);
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.opcao:hover {
+    border-color: var(--azul-medio);
+    background-color: var(--fundo-claro);
+}
+
+.opcao:disabled {
+    cursor: default;           /* depois de responder, não mostra mais a mãozinha */
+}
+
+.opcao-letra {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: var(--azul-nevoa);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    flex-shrink: 0;            /* o círculo nunca encolhe */
+}
+
+/* Classes colocadas pelo JavaScript depois que a pessoa responde */
+.opcao.correta {
+    border-color: #2e8b57;
+    background-color: #eaf7ef;
+    color: #1e6b42;
+}
+
+.opcao.correta .opcao-letra {
+    background-color: #2e8b57;
+    color: var(--branco);
+}
+
+.opcao.errada {
+    border-color: #c0392b;
+    background-color: #fdecea;
+    color: #a93226;
+}
+
+.opcao.errada .opcao-letra {
+    background-color: #c0392b;
+    color: var(--branco);
+}
+
+.quiz-rodape {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.quiz-feedback {
+    font-size: 13px;
+    color: var(--texto-suave);
+}
+
+.botao-proxima {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--azul-medio);
+    white-space: nowrap;
+}
+
+/* :disabled = quando o botão está desativado (antes de responder) */
+.botao-proxima:disabled {
+    color: #b6c2d0;
+    cursor: not-allowed;
+}
+
+.quiz-resultado {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.resultado-numero {
+    font-family: var(--fonte-titulo);
+    font-size: 84px;
+    line-height: 1;
+    color: var(--azul-medio);
+}
+
+.resultado-mensagem {
+    font-size: 15px;
+    color: var(--texto-suave);
+    margin: 16px auto 28px;
+    max-width: 360px;
+}
+
+.quiz-resultado .botao-principal {
+    max-width: 260px;
+}
+
+
+/* ---------- 11. RODAPÉ ---------- */
+.rodape {
+    background-color: var(--azul-profundo);
+    color: var(--branco);
+    padding: 72px 0 32px;
+}
+
+.rodape-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 1fr;
+    gap: 48px;
+}
+
+.rodape-nome {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin: 16px 0 8px;
+}
+
+.rodape-texto {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 240px;
+}
+
+.rodape-citacao {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 23px;
+    line-height: 1.4;
+    color: var(--azul-gelo);
+}
+
+.rodape-citacao span {
+    display: block;
+    margin-top: 10px;
+    font-family: var(--fonte-texto);
+    font-style: normal;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--azul-claro);
+}
+
+.rodape-colunas {
+    display: flex;
+    gap: 48px;
+}
+
+.rodape-colunas div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.rodape-titulo {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--azul-claro);
+    margin-bottom: 4px;
+}
+
+.rodape-colunas a {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.rodape-colunas a:hover {
+    color: var(--branco);
+}
+
+.rodape-copy {
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.45);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin: 56px 32px 0;
+    padding-top: 24px;
+}
+
+
+/* ---------- 12. JANELA DO VERSÍCULO (MODAL) ---------- */
+.modal-fundo {
+    display: none;             /* escondida no início */
+    position: fixed;           /* cobre a tela inteira, mesmo rolando */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 18, 34, 0.7);   /* fundo escuro semitransparente */
+    z-index: 200;              /* acima do cabeçalho (100) */
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+/* O JavaScript adiciona "aberto" e a janela aparece centralizada */
+.modal-fundo.aberto {
+    display: flex;
+}
+
+.modal-caixa {
+    position: relative;
+    width: 100%;
+    max-width: 540px;
+    background-color: var(--branco);
+    border-radius: 6px 40px 6px 6px;
+    padding: 40px;
+    animation: aparecer 0.3s;  /* usa a animação definida logo abaixo */
+}
+
+/* @keyframes define uma animação: do estado "from" para o "to" */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-fechar {
+    position: absolute;
+    top: 14px;
+    right: 22px;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--texto-suave);
+}
+
+.modal-referencia {
+    font-family: var(--fonte-titulo);
+    font-weight: 500;
+    font-size: 32px;
+    color: var(--azul-noite);
+    margin-bottom: 14px;
+}
+
+.modal-texto {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--texto);
+    white-space: pre-line;     /* respeita as quebras de linha (\n) do texto vindo do JS */
+}
+
+.modal-traducao {
+    margin-top: 18px;
+    font-size: 11px;
+    color: var(--texto-suave);
+}
+
+
+/* ---------- 13. LOGIN E CADASTRO ---------- */
+.acesso {
+    display: grid;
+    grid-template-columns: 1fr 1fr;   /* metade azul, metade formulário */
+    min-height: 100vh;
+}
+
+/* Lado azul: usa o mesmo fundo "de água" do hero */
+.acesso-lado-azul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 48px;
+    color: var(--branco);
+    background-color: #0b2340;
+    background-image:
+        linear-gradient(180deg, rgba(10, 30, 55, 0.4), rgba(8, 24, 44, 0.92)),
+        url("img/hero-agua.jpg"),
+        radial-gradient(ellipse at 50% 45%, rgba(216, 182, 109, 0.28), transparent 60%),
+        repeating-linear-gradient(178deg, rgba(255, 255, 255, 0.05) 0 2px, transparent 2px 14px),
+        linear-gradient(180deg, #2c4a63, #0b2340);
+    background-size: cover;
+    background-position: center;
+}
+
+.acesso-citacao {
+    font-family: var(--fonte-titulo);
+    font-size: clamp(30px, 3.4vw, 46px);
+    line-height: 1.15;
+}
+
+.acesso-citacao em {
+    color: var(--dourado);
+}
+
+.acesso-citacao span {
+    display: block;
+    margin-top: 16px;
+    font-family: var(--fonte-texto);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.acesso-formulario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    background-color: var(--fundo-claro);
+}
+
+.caixa-formulario {
+    width: 100%;
+    max-width: 420px;
+}
+
+.voltar {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--azul-medio);
+    margin-bottom: 40px;
+}
+
+.caixa-formulario .texto-secao {
+    margin-bottom: 32px;
+}
+
+.campo {
+    margin-bottom: 18px;
+}
+
+.campo label {
+    display: block;            /* o label ocupa a linha inteira, ficando acima do input */
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--azul-noite);
+}
+
+.campo input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--borda);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    background-color: var(--branco);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* :focus = quando o campo está selecionado (cursor piscando nele) */
+.campo input:focus {
+    outline: none;             /* tira o contorno padrão do navegador... */
+    border-color: var(--azul-medio);
+    box-shadow: 0 0 0 3px rgba(30, 90, 158, 0.15);   /* ...e coloca um "halo" azul no lugar */
+}
+
+.campo-senha {
+    position: relative;        /* para posicionar o botão "Mostrar" dentro do campo */
+}
+
+.campo-senha input {
+    padding-right: 80px;       /* espaço para o texto não ficar embaixo do botão */
+}
+
+.botao-olho {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);   /* truque para centralizar na vertical */
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--azul-medio);
+}
+
+/* Caixa de mensagens: escondida até o JS colocar "erro" ou "sucesso" */
+.mensagem {
+    display: none;
+    padding: 12px 14px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+.mensagem.erro {
+    display: block;
+    background-color: #fdecea;
+    color: #a93226;
+}
+
+.mensagem.sucesso {
+    display: block;
+    background-color: #eaf7ef;
+    color: #1e7041;
+}
+
+.troca {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--texto-suave);
+}
+
+.troca a {
+    color: var(--azul-medio);
+    font-weight: 600;
+}
+
+
+/* ---------- 14. RESPONSIVIDADE ----------
+   @media aplica regras só quando a tela é menor que certo tamanho.
+   max-width: 900px  → tablets e celulares deitados
+   max-width: 600px  → celulares */
+@media (max-width: 900px) {
+
+    /* Menu vira "hambúrguer" */
+    .botao-menu {
+        display: block;
+    }
+
+    .menu {
+        display: none;         /* escondido até clicar no ☰ */
+        position: absolute;
+        top: 64px;             /* logo abaixo do cabeçalho */
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 8px 32px 24px;
+        background-color: #0d2a4a;
+    }
+
+    /* Classe colocada pelo JS ao clicar no ☰ */
+    .menu.menu-aberto {
+        display: flex;
+    }
+
+    .menu a {
+        width: 100%;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .area-usuario {
+        margin-top: 16px;
+    }
+
+    /* Todos os grids de 2 ou 3 colunas viram 1 coluna */
+    .cards-naturezas,
+    .humanidade-topo,
+    .detalhe-grid,
+    .evangelhos-grid,
+    .quiz-grid,
+    .rodape-grid,
+    .acesso {
+        grid-template-columns: 1fr;
+    }
+
+    /* Capítulos: número | título | seta, com o resumo embaixo do título */
+    .capitulo-linha {
+        grid-template-columns: 36px 1fr 36px;
+        gap: 6px 14px;
+    }
+
+    .capitulo-seta {
+        grid-column: 3;
+        grid-row: 1;
+    }
+
+    .capitulo-resumo {
+        grid-column: 2;
+    }
+
+    .capitulo-detalhe {
+        padding-left: 0;
+    }
+
+    .acesso-lado-azul {
+        min-height: 280px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .container {
+        padding: 0 20px;
+    }
+
+    .naturezas,
+    .humanidade,
+    .evangelhos,
+    .ditados,
+    .quiz {
+        padding: 80px 0;
+    }
+
+    .card-natureza {
+        padding: 32px 24px;
+    }
+
+    .lista-check,
+    .grade-ditados {
+        grid-template-columns: 1fr;
+    }
+
+    .capitulo-titulo {
+        font-size: 22px;
+    }
+
+    .card-grafico {
+        padding: 22px 18px;
+    }
+
+    .grafico-area {
+        height: 240px;
+    }
+
+    .legenda-item strong {
+        font-size: 11px;
+    }
+
+    .card-quiz {
+        padding: 28px 22px;
+    }
+
+    .quiz-pergunta {
+        font-size: 24px;
+    }
+
+    .quiz-rodape {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .rodape-colunas {
+        gap: 32px;
+    }
+
+    .acesso-lado-azul {
+        padding: 32px 24px;
+    }
+}
