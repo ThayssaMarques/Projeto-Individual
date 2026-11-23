@@ -1,45 +1,13 @@
-/* =========================================================
-   O HOMEM-DEUS — script.js
-   JavaScript da página principal (index.html).
-
-   Organização:
-   1. Menu do celular
-   2. Versículos (janela/modal)
-   3. Capítulos da jornada (abrir e fechar)
-   4. Gráfico com Chart.js (Evangelhos)
-   5. Quiz
-   6. Usuário logado (mostrar nome e sair)
-   7. O que roda quando a página abre
-   ========================================================= */
-
-
-/* =========================================================
-   1. MENU DO CELULAR
-   ========================================================= */
-
-// Chamada pelo botão ☰. classList.toggle("x") funciona como um interruptor:
-// se o elemento NÃO tem a classe, adiciona; se JÁ tem, remove.
-// O CSS mostra o menu quando ele tem a classe "menu-aberto".
 function abrirFecharMenu() {
     let menu = document.getElementById("menu");
     menu.classList.toggle("menu-aberto");
 }
 
-// Chamada ao clicar em um link do menu: fecha o menu no celular.
 function fecharMenu() {
     let menu = document.getElementById("menu");
     menu.classList.remove("menu-aberto");
 }
 
-
-/* =========================================================
-   2. VERSÍCULOS
-   CONCEITO NOVO — OBJETO: guarda informações em pares "chave: valor".
-   Aqui a chave é a referência (ex.: "João 1:14") e o valor é o texto.
-   Para buscar um texto: versiculos["João 1:14"]
-   Para adicionar um versículo novo, é só incluir mais uma linha.
-   "\n" dentro do texto significa "quebra de linha".
-   ========================================================= */
 let versiculos = {
     "João 1:1": "No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus.",
     "João 1:14": "E o Verbo se fez carne e habitou entre nós, e vimos a sua glória, como a glória do unigênito do Pai, cheio de graça e de verdade.",
@@ -79,21 +47,16 @@ let versiculos = {
     "Mateus 6:34": "Não vos inquieteis, pois, pelo dia de amanhã, porque o dia de amanhã cuidará de si mesmo. Basta a cada dia o seu mal."
 };
 
-// Abre a janela com o versículo. Recebe a referência pelo onclick do HTML.
-// Exemplo: onclick="abrirVersiculo('João 1:14')"
 function abrirVersiculo(referencia) {
     let texto = versiculos[referencia];
 
-    // Se a referência não existir no objeto, o resultado é "undefined"
     if (texto == undefined) {
         texto = "Versículo ainda não cadastrado.";
     }
 
-    // innerHTML troca o conteúdo de dentro do elemento
     document.getElementById("modalReferencia").innerHTML = referencia;
     document.getElementById("modalTexto").innerHTML = texto;
 
-    // A classe "aberto" faz o CSS mostrar a janela (display: flex)
     document.getElementById("modalVersiculo").classList.add("aberto");
 }
 
@@ -101,49 +64,23 @@ function fecharVersiculo() {
     document.getElementById("modalVersiculo").classList.remove("aberto");
 }
 
-// Fecha a janela ao clicar no fundo escuro (mas não ao clicar na caixa branca).
-// "evento" traz informações do clique. evento.target é o elemento exato clicado.
 function clicarFundoModal(evento) {
     if (evento.target.id == "modalVersiculo") {
         fecharVersiculo();
     }
 }
 
-// CONCEITO NOVO — addEventListener: "fica escutando" um acontecimento.
-// Aqui escutamos as teclas: se apertar Esc, a janela fecha.
 document.addEventListener("keydown", function (evento) {
     if (evento.key == "Escape") {
         fecharVersiculo();
     }
 });
 
-
-/* =========================================================
-   3. CAPÍTULOS DA JORNADA
-   Cada capítulo tem id "capitulo1", "capitulo2"...
-   Juntando o texto "capitulo" com o número, achamos o certo.
-   ========================================================= */
 function abrirCapitulo(numero) {
     let capitulo = document.getElementById("capitulo" + numero);
-    capitulo.classList.toggle("aberto");   // abre se estava fechado, fecha se estava aberto
+    capitulo.classList.toggle("aberto");
 }
 
-
-/* =========================================================
-   4. GRÁFICO COM CHART.JS
-
-   COMO O CHART.JS FUNCIONA:
-   - A biblioteca é carregada no index.html pela tag <script src="...chart.js">.
-   - Ela cria a função "Chart". Usamos: new Chart(canvas, configuracao)
-   - A configuração é um OBJETO com 3 partes principais:
-       type    → tipo do gráfico ("bar" = barras, "line" = linhas, "pie" = pizza)
-       data    → os dados: labels (nomes) e datasets (valores e cores)
-       options → a aparência: eixos, legenda, tooltip, responsividade
-
-   DADOS FÁCEIS DE ATUALIZAR:
-   Todos os dados ficam no vetor "evangelhos" abaixo. Para mudar o gráfico,
-   mude só aqui: o gráfico, os nomes embaixo e o total 89 se atualizam sozinhos.
-   ========================================================= */
 let evangelhos = [
     {
         nome: "Mateus",
@@ -175,16 +112,12 @@ let evangelhos = [
     }
 ];
 
-/* PLUGIN para escrever o número em cima de cada barra.
-   Plugin = um "complemento" que o Chart.js chama em certos momentos.
-   afterDatasetsDraw roda DEPOIS que as barras são desenhadas.
-   ctx é o "pincel" do canvas: com ele escrevemos o texto. */
 let pluginNumerosNasBarras = {
     id: "numerosNasBarras",
     afterDatasetsDraw: function (grafico) {
         let ctx = grafico.ctx;
-        let barras = grafico.getDatasetMeta(0).data;   // posições de cada barra
-        let valores = grafico.data.datasets[0].data;   // os números (28, 16...)
+        let barras = grafico.getDatasetMeta(0).data;
+        let valores = grafico.data.datasets[0].data;
 
         ctx.font = "500 16px 'Cormorant Garamond', Georgia, serif";
         ctx.fillStyle = "#1e5a9e";
@@ -192,7 +125,7 @@ let pluginNumerosNasBarras = {
 
         let i = 0;
         while (i < barras.length) {
-            // escreve o valor no x da barra, 8px acima do topo dela
+
             ctx.fillText(valores[i], barras[i].x, barras[i].y - 8);
             i++;
         }
@@ -200,56 +133,52 @@ let pluginNumerosNasBarras = {
 };
 
 function criarGrafico() {
-    // 1) Separamos os dados do vetor de objetos em 3 vetores simples,
-    //    porque é assim que o Chart.js recebe os dados.
+
     let nomes = [];
     let quantidades = [];
     let cores = [];
 
     let i = 0;
     while (i < evangelhos.length) {
-        nomes.push(evangelhos[i].nome);              // push = adiciona no fim do vetor
+        nomes.push(evangelhos[i].nome);
         quantidades.push(evangelhos[i].capitulos);
         cores.push(evangelhos[i].cor);
         i++;
     }
 
-    // 2) Fonte padrão de todos os textos do gráfico
     Chart.defaults.font.family = "'DM Sans', Arial, sans-serif";
 
-    // 3) Pegamos o <canvas> onde o gráfico será desenhado
     let canvas = document.getElementById("graficoEvangelhos");
 
-    // 4) Criamos o gráfico
     new Chart(canvas, {
         type: "bar",
 
         data: {
-            labels: nomes,                       // nomes de cada barra
+            labels: nomes,
             datasets: [
                 {
                     label: "Capítulos",
-                    data: quantidades,           // altura de cada barra
-                    backgroundColor: cores,      // uma cor para cada barra
-                    barPercentage: 0.4,          // largura da barra (0 a 1)
-                    borderRadius: 0              // barras com cantos retos, como no protótipo
+                    data: quantidades,
+                    backgroundColor: cores,
+                    barPercentage: 0.4,
+                    borderRadius: 0
                 }
             ]
         },
 
         options: {
-            responsive: true,            // acompanha o tamanho da tela
-            maintainAspectRatio: false,  // usa a altura da div .grafico-area (CSS)
+            responsive: true,
+            maintainAspectRatio: false,
             layout: {
-                padding: { top: 28 }     // espaço para o número em cima da barra mais alta
+                padding: { top: 28 }
             },
             plugins: {
-                legend: { display: false },      // esconde a legenda padrão (fizemos a nossa em HTML)
+                legend: { display: false },
                 tooltip: {
                     backgroundColor: "#0b2a4b",
                     padding: 10,
                     callbacks: {
-                        // muda o texto da caixinha que aparece ao passar o mouse
+
                         label: function (contexto) {
                             return contexto.raw + " capítulos";
                         }
@@ -258,16 +187,16 @@ function criarGrafico() {
             },
             scales: {
                 x: {
-                    ticks: { display: false },   // nomes ficam na nossa legenda em HTML
-                    grid: { display: false },    // sem linhas verticais
-                    border: { color: "#dbe6f2" } // linha da base
+                    ticks: { display: false },
+                    grid: { display: false },
+                    border: { color: "#dbe6f2" }
                 },
                 y: {
-                    beginAtZero: true,           // eixo começa no zero
+                    beginAtZero: true,
                     max: 30,
-                    ticks: { display: false, stepSize: 10 },   // linhas a cada 10 capítulos, sem números
-                    grid: { color: "#e3ebf4" },  // cor das linhas horizontais
-                    border: { display: false, dash: [4, 4] }   // linhas tracejadas (4px traço, 4px espaço)
+                    ticks: { display: false, stepSize: 10 },
+                    grid: { color: "#e3ebf4" },
+                    border: { display: false, dash: [4, 4] }
                 }
             }
         },
@@ -276,13 +205,12 @@ function criarGrafico() {
     });
 }
 
-// Cria os nomes embaixo das barras (Mateus / Rei, Marcos / Servo...)
 function montarLegenda() {
     let html = "";
     let i = 0;
 
     while (i < evangelhos.length) {
-        // Montamos o HTML de cada botão juntando textos (concatenação com +)
+
         html = html + "<button class='legenda-item' id='legenda" + i + "' onclick='mostrarEvangelho(" + i + ")'>" +
             "<strong>" + evangelhos[i].nome + "</strong>" +
             "<em>" + evangelhos[i].perspectiva + "</em>" +
@@ -293,14 +221,12 @@ function montarLegenda() {
     document.getElementById("legendaGrafico").innerHTML = html;
 }
 
-// Mostra a explicação do Evangelho clicado e destaca o nome dele
 function mostrarEvangelho(indice) {
     let escolhido = evangelhos[indice];
 
     document.getElementById("descricaoEvangelho").innerHTML =
         "<strong>" + escolhido.nome + " · " + escolhido.perspectiva + "</strong> — " + escolhido.descricao;
 
-    // Tira o destaque de todos e coloca só no clicado
     let i = 0;
     while (i < evangelhos.length) {
         document.getElementById("legenda" + i).classList.remove("ativo");
@@ -309,7 +235,6 @@ function mostrarEvangelho(indice) {
     document.getElementById("legenda" + indice).classList.add("ativo");
 }
 
-// Soma os capítulos com um while (acumulador) e mostra o total na tela
 function mostrarTotalCapitulos() {
     let total = 0;
     let i = 0;
@@ -323,13 +248,6 @@ function mostrarTotalCapitulos() {
     document.getElementById("totalTexto").innerHTML = total;
 }
 
-
-/* =========================================================
-   5. QUIZ
-   As perguntas ficam num vetor de objetos. Cada objeto tem:
-   pergunta, alternativas (outro vetor), correta (posição da certa,
-   começando em 0) e explicacao (mostrada após responder).
-   ========================================================= */
 let perguntas = [
     {
         pergunta: "Segundo João 1, quem se fez carne e habitou entre nós?",
@@ -354,32 +272,69 @@ let perguntas = [
         alternativas: ["Desistiu no deserto", "Pediu que os anjos lutassem", "Fugiu da cruz", "Sem pecado"],
         correta: 3,
         explicacao: "Ele foi tentado em tudo, mas sem pecado."
+    },
+    {
+        pergunta: "Segundo Lucas 2:7, onde Maria deitou Jesus quando Ele nasceu?",
+        alternativas: ["Em um berço de ouro", "Em uma manjedoura", "No templo", "Em um barco"],
+        correta: 1,
+        explicacao: "Lucas 2:7 — não havia lugar na estalagem, então foi deitado numa manjedoura."
+    },
+    {
+        pergunta: "Em Marcos 6:3, qual profissão as pessoas ligavam a Jesus?",
+        alternativas: ["Pescador", "Cobrador de impostos", "Pastor de ovelhas", "Carpinteiro"],
+        correta: 3,
+        explicacao: "Marcos 6:3 — “Não é este o carpinteiro, filho de Maria?”"
+    },
+    {
+        pergunta: "Segundo Mateus 4:2, depois de quantos dias de jejum Jesus teve fome?",
+        alternativas: ["40 dias", "7 dias", "12 dias", "3 dias"],
+        correta: 0,
+        explicacao: "Mateus 4:2 — jejuou quarenta dias e quarenta noites, e depois teve fome."
+    },
+    {
+        pergunta: "O que Jesus estava fazendo no barco durante a tempestade (Marcos 4:38)?",
+        alternativas: ["Pescando", "Remando", "Dormindo", "Pregando"],
+        correta: 2,
+        explicacao: "Marcos 4:38 — Ele dormia sobre uma almofada, cansado como qualquer homem."
+    },
+    {
+        pergunta: "Em João 4:6, como Jesus estava quando se sentou junto à fonte de Jacó?",
+        alternativas: ["Cansado do caminho", "Com raiva", "Com pressa", "Doente"],
+        correta: 0,
+        explicacao: "João 4:6 — Jesus, cansado do caminho, sentou-se junto à fonte."
+    },
+    {
+        pergunta: "Qual destas frases Jesus disse na cruz, mostrando sua humanidade (João 19:28)?",
+        alternativas: ["Estou com frio", "Tenho sede", "Quero descansar", "Estou com fome"],
+        correta: 1,
+        explicacao: "João 19:28 — “Tenho sede.”"
+    },
+    {
+        pergunta: "Segundo Lucas 2:52, em que Jesus crescia?",
+        alternativas: ["Só em estatura", "Em riqueza e fama", "Em força e poder", "Em sabedoria, estatura e graça"],
+        correta: 3,
+        explicacao: "Lucas 2:52 — crescia em sabedoria, em estatura e em graça para com Deus e os homens."
     }
 ];
 
 let letras = ["A", "B", "C", "D"];
 
-// Variáveis globais: guardam o "estado" do quiz enquanto a pessoa joga
-let perguntaAtual = 0;     // posição da pergunta no vetor
-let acertos = 0;           // quantas acertou
-let jaRespondeu = false;   // impede responder duas vezes a mesma pergunta
+let perguntaAtual = 0;
+let acertos = 0;
+let jaRespondeu = false;
 
-// Coloca na tela a pergunta da posição "perguntaAtual"
 function mostrarPergunta() {
     let item = perguntas[perguntaAtual];
 
-    // Contador "Questão 1 de 4" (somamos 1 porque o vetor começa no 0)
     document.getElementById("quizContador").innerHTML =
         "Questão " + (perguntaAtual + 1) + " de " + perguntas.length;
 
-    // Porcentagem de progresso: quantas já respondidas / total
     let porcentagem = (perguntaAtual / perguntas.length) * 100;
     document.getElementById("quizPorcentagem").innerHTML = porcentagem.toFixed(0) + "%";
     document.getElementById("barraPreenchida").style.width = porcentagem + "%";
 
     document.getElementById("quizPergunta").innerHTML = item.pergunta;
 
-    // Monta os 4 botões de alternativa com while
     let html = "";
     let i = 0;
     while (i < item.alternativas.length) {
@@ -391,12 +346,10 @@ function mostrarPergunta() {
     }
     document.getElementById("quizOpcoes").innerHTML = html;
 
-    // Reinicia o rodapé da pergunta
     document.getElementById("quizFeedback").innerHTML = "";
-    document.getElementById("botaoProxima").disabled = true;   // desativa até responder
+    document.getElementById("botaoProxima").disabled = true;
     jaRespondeu = false;
 
-    // Na última pergunta, o botão muda de texto
     if (perguntaAtual == perguntas.length - 1) {
         document.getElementById("botaoProxima").innerHTML = "Ver resultado <span>→</span>";
     } else {
@@ -404,7 +357,6 @@ function mostrarPergunta() {
     }
 }
 
-// Chamada ao clicar numa alternativa. "escolhida" é a posição clicada (0 a 3).
 function escolherResposta(escolhida) {
     if (jaRespondeu == false) {
         jaRespondeu = true;
@@ -417,20 +369,18 @@ function escolherResposta(escolhida) {
             document.getElementById("opcao" + escolhida).classList.add("correta");
             feedback.innerHTML = "✓ Isso mesmo! " + perguntas[perguntaAtual].explicacao;
         } else {
-            // marca a escolhida de vermelho e mostra qual era a certa em verde
+
             document.getElementById("opcao" + escolhida).classList.add("errada");
             document.getElementById("opcao" + certa).classList.add("correta");
             feedback.innerHTML = "Quase! Resposta: " + letras[certa] + ". " + perguntas[perguntaAtual].explicacao;
         }
 
-        // Desativa todas as alternativas para não clicar de novo
         let i = 0;
         while (i < letras.length) {
             document.getElementById("opcao" + i).disabled = true;
             i++;
         }
 
-        // Libera o botão "Próxima questão"
         document.getElementById("botaoProxima").disabled = false;
     }
 }
@@ -445,7 +395,6 @@ function proximaPergunta() {
     }
 }
 
-// Envia o resultado do quiz para a API gravar no banco
 function salvarResultado() {
     let idUsuario = sessionStorage.ID_USUARIO;
 
@@ -459,7 +408,7 @@ function salvarResultado() {
     }).then(function (resposta) {
         if (resposta.ok) {
             console.log("Resultado salvo no banco!");
-                    obterDadosEvolucao();   // busca de novo, agora com a tentativa nova
+                    obterDadosEvolucao();
         } else {
             console.log("Erro ao salvar o resultado.");
         }
@@ -470,13 +419,12 @@ function salvarResultado() {
 
 function mostrarResultado() {
      salvarResultado();
-    // Esconde as perguntas e mostra o resultado (style.display)
+
     document.getElementById("quizAndamento").style.display = "none";
     document.getElementById("quizResultado").style.display = "block";
 
     document.getElementById("resultadoNumero").innerHTML = acertos + "/" + perguntas.length;
 
-    // Se a pessoa estiver logada, usamos o nome dela na mensagem
     let nome = "";
         if (sessionStorage.NOME_USUARIO != null) {
         nome = ", " + sessionStorage.NOME_USUARIO;
@@ -492,8 +440,6 @@ function mostrarResultado() {
     document.getElementById("resultadoMensagem").innerHTML = mensagem;
 }
 
-// Decide o que aparece no card do quiz:
-// logado → começa o quiz; não logado → mostra o aviso para entrar
 function verificarAcessoQuiz() {
     if (sessionStorage.ID_USUARIO != null) {
         mostrarPergunta();
@@ -504,7 +450,7 @@ function verificarAcessoQuiz() {
         if (sessionStorage.ID_USUARIO != null) {
         mostrarPergunta();
         document.getElementById("evolucao").style.display = "block";
-    
+
     } else {
             obterDadosEvolucao();
     }
@@ -517,20 +463,9 @@ function reiniciarQuiz() {
     mostrarPergunta();
 }
 
-
-/* =========================================================
-   6. USUÁRIO LOGADO
-   CONCEITO NOVO — localStorage: um "armazenamento" do navegador
-   que guarda textos mesmo depois de fechar a página.
-     localStorage.setItem("chave", "valor") → guarda
-     localStorage.getItem("chave")          → lê (null se não existir)
-   O login.html guarda logado = "sim". Aqui verificamos isso.
-   ========================================================= */
-
 function mostrarUsuario() {
     let nome = sessionStorage.NOME_USUARIO;
 
-    // Se não tem ninguém logado, NOME_USUARIO não existe (fica undefined)
     if (nome != null) {
         document.getElementById("areaUsuario").innerHTML =
             "<span class='usuario-nome'>Olá, " + nome + "</span>" +
@@ -539,18 +474,10 @@ function mostrarUsuario() {
 }
 
 function sair() {
-    sessionStorage.clear();                // apaga tudo que estava guardado
+    sessionStorage.clear();
     window.location.href = "login.html";
 }
 
-/* =========================================================
-   8. GRÁFICO DE EVOLUÇÃO (dados vindos do banco)
-   Mesma ideia do dashboard da faculdade:
-   1) obterDadosEvolucao → busca os dados na API
-   2) plotarEvolucao     → desenha o gráfico com eles
-   ========================================================= */
-
-// Guarda o gráfico desenhado, para poder apagá-lo antes de desenhar de novo
 let graficoEvolucao = null;
 
 function obterDadosEvolucao() {
@@ -560,13 +487,12 @@ function obterDadosEvolucao() {
         .then(function (resposta) {
             if (resposta.status == 200) {
                 resposta.json().then(function (dados) {
-                    // O banco manda do MAIS NOVO para o mais antigo (DESC).
-                    // reverse() inverte o vetor, para o gráfico ir da esquerda (antigo) para a direita (novo).
+
                     dados.reverse();
                     plotarEvolucao(dados);
                 });
             } else {
-                // 204: a pessoa ainda não fez nenhuma tentativa
+
                 document.getElementById("avisoEvolucao").innerHTML =
                     "Você ainda não fez o quiz. Responda para ver sua evolução aqui!";
             }
@@ -577,7 +503,7 @@ function obterDadosEvolucao() {
 }
 
 function plotarEvolucao(dados) {
-    // Separa os dados em dois vetores, como no gráfico dos Evangelhos
+
     let momentos = [];
     let acertosPorTentativa = [];
 
@@ -588,7 +514,6 @@ function plotarEvolucao(dados) {
         i++;
     }
 
-    // Se já existe um gráfico desenhado, apaga antes de desenhar o novo
     if (graficoEvolucao != null) {
         graficoEvolucao.destroy();
     }
@@ -598,16 +523,16 @@ function plotarEvolucao(dados) {
     let canvas = document.getElementById("graficoEvolucao");
 
     graficoEvolucao = new Chart(canvas, {
-        type: "line",                         // gráfico de LINHA, bom para mostrar evolução
+        type: "line",
         data: {
-            labels: momentos,                 // datas embaixo (eixo X)
+            labels: momentos,
             datasets: [
                 {
                     label: "Acertos",
-                    data: acertosPorTentativa,    // altura de cada ponto (eixo Y)
-                    borderColor: "#1e5a9e",       // cor da linha
-                    backgroundColor: "#1e5a9e",   // cor dos pontos
-                    tension: 0.3                  // deixa a linha levemente curva
+                    data: acertosPorTentativa,
+                    borderColor: "#1e5a9e",
+                    backgroundColor: "#1e5a9e",
+                    tension: 0.3
                 }
             ]
         },
@@ -620,20 +545,14 @@ function plotarEvolucao(dados) {
             scales: {
                 y: {
                     beginAtZero: true,
-                    max: perguntas.length,        // o máximo é o total de perguntas (4)
-                    ticks: { stepSize: 1 }        // só números inteiros: 0, 1, 2, 3, 4
+                    max: perguntas.length,
+                    ticks: { stepSize: 1 }
                 }
             }
         }
     });
 }
 
-/* =========================================================
-   7. O QUE RODA QUANDO A PÁGINA ABRE
-   Como o <script> está no fim do <body>, o HTML já existe aqui.
-   ========================================================= */
-// O gráfico fica por último: se a internet cair e o Chart.js não carregar,
-// o resto do site (quiz, menu, versículos) continua funcionando.
 mostrarUsuario();
 montarLegenda();
 mostrarTotalCapitulos();
