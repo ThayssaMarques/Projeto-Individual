@@ -62,5 +62,6 @@ function buscarKpis(req, res) {
 
 module.exports = {
     registrar,
-    buscarUltimos
+    buscarUltimos,
+    buscarKpis
 };
