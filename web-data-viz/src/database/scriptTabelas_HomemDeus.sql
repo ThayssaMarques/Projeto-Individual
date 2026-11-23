@@ -1,7 +1,7 @@
 CREATE DATABASE homem_deus;
 USE homem_deus;
 
--- Quem se cadastrou no site (substitui o localStorage do auth.js)
+
 CREATE TABLE usuario (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50),
@@ -10,7 +10,7 @@ CREATE TABLE usuario (
 );
 
 select * from usuario;
--- Cada vez que alguém termina o quiz, nasce uma linha aqui
+
 CREATE TABLE resultado_quiz (
     id INT PRIMARY KEY AUTO_INCREMENT,
     acertos INT,
