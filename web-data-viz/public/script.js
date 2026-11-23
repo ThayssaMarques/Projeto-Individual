@@ -409,12 +409,14 @@ function salvarResultado() {
         if (resposta.ok) {
             console.log("Resultado salvo no banco!");
                     obterDadosEvolucao();
+                    obterKpis();
         } else {
             console.log("Erro ao salvar o resultado.");
         }
     }).catch(function (erro) {
         console.log(erro);
     });
+                
 }
 
 function mostrarResultado() {
@@ -443,18 +445,15 @@ function mostrarResultado() {
 function verificarAcessoQuiz() {
     if (sessionStorage.ID_USUARIO != null) {
         mostrarPergunta();
+        document.getElementById("evolucao").style.display = "block";
+        obterDadosEvolucao();
+        obterKpis();
     } else {
         document.getElementById("quizAndamento").style.display = "none";
         document.getElementById("quizBloqueado").style.display = "block";
-}
-        if (sessionStorage.ID_USUARIO != null) {
-        mostrarPergunta();
-        document.getElementById("evolucao").style.display = "block";
-
-    } else {
-            obterDadosEvolucao();
     }
 }
+
 function reiniciarQuiz() {
     perguntaAtual = 0;
     acertos = 0;
@@ -551,6 +550,31 @@ function plotarEvolucao(dados) {
             }
         }
     });
+}
+function obterKpis() {
+    let idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch("/resultados/kpis/" + idUsuario, { cache: "no-store" })
+        .then(function (resposta) {
+            if (resposta.status == 200) {
+                resposta.json().then(function (dados) {
+                    mostrarKpis(dados[0]);
+                });
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        });
+}
+
+function mostrarKpis(kpi) {
+    if (kpi.total_tentativas > 0) {
+        document.getElementById("kpiPorcentagem").innerHTML = kpi.porcentagem + "%";
+        document.getElementById("kpiAcertos").innerHTML = kpi.total_acertos;
+        document.getElementById("kpiAcertosLegenda").innerHTML =
+            "Acertos em " + kpi.total_tentativas + " tentativas";
+        document.getElementById("kpiMaior").innerHTML = kpi.maior_acertos + "/" + perguntas.length;
+    }
 }
 
 mostrarUsuario();
