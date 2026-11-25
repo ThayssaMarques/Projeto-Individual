@@ -5,6 +5,11 @@
 Site sobre a **humanidade de Jesus**: 100% homem e 100% Deus. Este é o projeto individual do 1º semestre de **Análise e Desenvolvimento de Sistemas** na **SPTECH**.
  
 ---
+## 🔗 Links do projeto
+
+| | |
+|---|---|
+📄 Documentação do projeto | [Word](https://bandteccom-my.sharepoint.com/:w:/g/personal/thayssa_souza_sptech_school/cQoboEH_iceTR7dRjyOWVtPfEgUBqw0I5EpZGAix28DuXrJjSg)
  
 ## 📖 Sobre o projeto
  
