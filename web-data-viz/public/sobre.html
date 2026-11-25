@@ -5,19 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Mim | O Homem-Deus</title>
     
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-</body>
-</html>
-<header class="cabecalho">
+    <header class="cabecalho">
         <div class="container cabecalho-conteudo">
 
-           
-            <a href="#inicio" class="logo">
+            <a href="index.html#inicio" class="logo">
                 <span class="logo-icone">†</span>
                 O HOMEM-DEUS
             </a>
@@ -26,11 +25,11 @@
 
            
             <nav class="menu" id="menu">
-                <a href="#inicio" onclick="fecharMenu()">Início</a>
-                <a href="#humanidade" onclick="fecharMenu()">Humanidade</a>
-                <a href="#evangelhos" onclick="fecharMenu()">Evangelhos</a>
-                <a href="#ditados" onclick="fecharMenu()">Ditados</a>
-                <a href="#quiz" onclick="fecharMenu()">Quiz</a>
+                <a href="index.html#inicio" onclick="fecharMenu()">Início</a>
+                <a href="index.html#humanidade" onclick="fecharMenu()">Humanidade</a>
+                <a href="index.html#evangelhos" onclick="fecharMenu()">Evangelhos</a>
+                <a href="index.html#ditados" onclick="fecharMenu()">Ditados</a>
+                <a href="index.html#quiz" onclick="fecharMenu()">Quiz</a>
 
 
                 <a href="sobre.html">Sobre Mim</a>
@@ -71,7 +70,7 @@
 
     <section class="secao-historia secao-escura">
         <span class="idade">12 anos</span>
-        <h2>Conhecendo o Deus dos meus pais</h2>
+        <h2><em>Conhecendo</em> o Deus dos meus pais</h2>
         <p>Aos 12 anos, convidei minha melhor amiga para ler a Bíblia comigo. Eu queria conhecer melhor o Deus dos meus pais, não só ouvir falar dEle, mas conhecê-Lo por mim mesma.</p>
     </section>
 
@@ -84,7 +83,7 @@
         <blockquote class="versiculo-destaque">
             <p>"Todas as coisas foram feitas por ele, e sem ele nada do que foi feito se fez. Nele estava a vida, e a vida era a luz dos homens. E a luz resplandece nas trevas, e as trevas não a compreenderam."</p>
             <cite>João 1:3-5 (ARC)</cite>
-                        <button class="referencia" onclick="abrirVersiculo('João 1:1-14')">Ler João 1:1-14</button>
+            <button class="link-versiculo" onclick="abrirVersiculo('João 1:1-14')">Ler João 1:1-14</button>
         </blockquote>
 
         <figure class="foto-historia">
@@ -113,12 +112,19 @@
         <blockquote class="versiculo-destaque">
             <p>"Porque não temos um sumo sacerdote que não possa compadecer-se das nossas fraquezas; porém um que, como nós, em tudo foi tentado, mas sem pecado."</p>
             <cite>Hebreus 4:15 (ARC)</cite>
-                        <button class="referencia" onclick="abrirVersiculo('Hebreus 4:15-16')">Ler Hebreus 4:15-16</button>
+            <button class="link-versiculo" onclick="abrirVersiculo('Hebreus 4:15-16')">Ler Hebreus 4:15-16</button>
         </blockquote>
+
+        <figure class="foto-historia">
+            <img src="img/buzine-para-jesus.jpg" alt="eu segurando uma placa com a mensagem Buzine para Jesus">
+            
+        </figure>
+
+        <p class="frase-pessoal">"Eu, que não me sentia pertencente a lugar nenhum, encontrei em Jesus o meu lugar."</p>
 
         <div class="botoes-final">
             <a href="index.html" class="botao">Conheça O Homem-Deus</a>
-            <a href="quiz.html" class="botao">Faça o quiz</a>
+            <a href="index.html#quiz" class="botao">Faça o quiz</a>
         </div>
     </section>
     </main>
@@ -131,3 +137,7 @@
             <p class="modal-traducao">Tradução Almeida</p>
         </div>
     </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

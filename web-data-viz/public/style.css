@@ -1525,138 +1525,223 @@ button {
     }
 }
 
+/* ===== Página Sobre Mim ===== */
+
+/* Topo da página: mesmo azul do cabeçalho e da seção Humanidade */
 .abertura {
-    background-color: #0b2545;
-    color: #ffffff;
+    background-color: var(--azul-noite);
+    color: var(--branco);
     text-align: center;
-    padding: 90px 20% 50px;
+    padding: 160px 20% 80px;
 }
 
 .abertura h1 {
-    font-size: 48px;
-    margin-bottom: 16px;
-}
-
-.abertura p {
-    font-size: 20px;
-    font-style: italic;
-    opacity: 0.85;
-}
-
-.secao-historia {
-    padding: 70px 20%;
-    line-height: 1.7;
-    font-size: 18px;
-}
-
-.secao-historia h2 {
-    font-size: 32px;
+    font-family: var(--fonte-titulo);
+    font-weight: 400;
+    font-size: clamp(48px, 7vw, 88px);
+    line-height: 1.05;
     margin-bottom: 20px;
 }
 
+.abertura p {
+    font-family: var(--fonte-titulo);
+    font-size: 21px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Cada parte da história */
+.secao-historia {
+    padding: 100px 20%;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.secao-historia h2 {
+    font-family: var(--fonte-titulo);
+    font-weight: 400;
+    font-size: clamp(36px, 4.5vw, 52px);
+    line-height: 1.1;
+    margin-bottom: 28px;
+}
+
+/* Parte do título em itálico azul, como no index (só aparece se usar <em>) */
+.secao-historia h2 em {
+    font-style: italic;
+    color: var(--azul-claro);
+}
+
 .secao-historia p {
+    margin-bottom: 18px;
+}
+
+/* Seções escuras (as trevas) */
+.secao-escura {
+    background-color: var(--azul-noite);
+    color: var(--branco);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.secao-escura p,
+.secao-transicao p {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Seção 5: a luz começa a chegar */
+.secao-transicao {
+    background: linear-gradient(to bottom, var(--azul-noite), var(--azul-medio));
+    color: var(--branco);
+}
+
+/* Seção 6 (a luz): começa no azul-médio, onde a seção 5 termina, e clareia */
+.secao-clara {
+    background: linear-gradient(to bottom, var(--azul-medio) 0px, var(--azul-gelo) 140px, var(--fundo-claro) 100%);
+    color: var(--texto);
+    text-align: center;
+    padding-top: 160px;
+}
+
+.secao-clara h2 {
+    color: var(--azul-noite);
+}
+
+.secao-clara h2 em {
+    color: var(--azul-medio);
+}
+
+/* Idade: mesmo estilo do .rotulo do index */
+.idade {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--azul-claro);
     margin-bottom: 16px;
 }
 
-.secao-escura {
-    background-color: #0b2545;
-    color: #ffffff;
-}
-
-.secao-transicao {
-    background: linear-gradient(to bottom, #0b2545, #1f6fb2);
-    color: #ffffff;
-}
-
-.secao-clara {
-    background: linear-gradient(to bottom, #cfe2f5, #ffffff);
-    color: #0b2545;
-    text-align: center;
-}
-
-.idade {
-    display: inline-block;
-    background-color: #8fc1ff;
-    color: #0b2545;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 6px 14px;
-    border-radius: 20px;
-    margin-bottom: 14px;
-}
-
+/* Caixa do versículo */
 .versiculo-destaque {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-left: 4px solid #8fc1ff;
-    border-radius: 8px;
-    padding: 28px 32px;
-    margin: 36px 0;
-    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 4px 36px 4px 4px;
+    padding: 36px 40px;
+    margin: 40px 0;
+}
+
+.versiculo-destaque p {
+    font-family: var(--fonte-titulo);
+    font-size: 26px;
     font-style: italic;
+    line-height: 1.35;
+    color: var(--branco);
+    margin-bottom: 0;
 }
 
 .versiculo-destaque cite {
     display: block;
-    margin-top: 12px;
+    margin-top: 20px;
     font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--azul-claro);
+}
+
+.versiculo-destaque .link-versiculo {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--azul-claro);
 }
 
 .secao-clara .versiculo-destaque {
-    background-color: #ffffff;
-    border-left-color: #1f6fb2;
-    box-shadow: 0 4px 16px rgba(11, 37, 69, 0.1);
+    background-color: var(--branco);
+    border-color: var(--borda);
+    box-shadow: 0 10px 30px rgba(11, 42, 75, 0.08);
     text-align: left;
 }
 
+.secao-clara .versiculo-destaque p {
+    color: var(--azul-noite);
+}
+
+.secao-clara .versiculo-destaque cite,
+.secao-clara .versiculo-destaque .link-versiculo {
+    color: var(--azul-medio);
+}
+
+/* Fotos */
 .foto-historia {
-    margin: 36px 0;
+    margin: 48px 0;
     text-align: center;
 }
 
 .foto-historia img {
     max-width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    border-radius: 4px 36px 4px 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.secao-clara .foto-historia img {
+    box-shadow: 0 10px 30px rgba(11, 42, 75, 0.15);
 }
 
 .foto-historia figcaption {
-    margin-top: 10px;
-    font-size: 15px;
+    margin-top: 14px;
+    font-family: var(--fonte-titulo);
+    font-size: 18px;
     font-style: italic;
-    opacity: 0.85;
+    opacity: 0.8;
 }
 
+/* "Deus entende a sua dor." */
 .frase-final {
-    font-size: 34px;
-    font-weight: bold;
-    color: #1f6fb2;
-    margin: 30px 0;
+    font-family: var(--fonte-titulo);
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(40px, 5vw, 60px);
+    line-height: 1.1;
+    color: var(--azul-medio);
+    margin: 32px 0;
 }
 
+/* Frase final da Thayssa */
+.frase-pessoal {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.35;
+    color: var(--azul-noite);
+    max-width: 600px;
+    margin: 40px auto 0;
+}
+
+/* Botões do fim: mesmo estilo do .botao-principal */
 .botoes-final {
     display: flex;
     justify-content: center;
-    gap: 16px;
+    gap: 12px;
     flex-wrap: wrap;
-    margin-top: 40px;
+    margin-top: 48px;
 }
 
 .botao {
     display: inline-block;
-    background-color: #1f6fb2;
-    color: #ffffff;
-    text-decoration: none;
-    padding: 14px 28px;
-    border-radius: 30px;
-    font-weight: bold;
+    background-color: var(--azul-noite);
+    color: var(--branco);
+    padding: 15px 32px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.2s;
 }
 
 .botao:hover {
-    background-color: #0b2545;
+    background-color: var(--azul-medio);
 }
 
+/* Celular */
 @media (max-width: 768px) {
     .abertura,
     .secao-historia {
@@ -1664,11 +1749,24 @@ button {
         padding-right: 24px;
     }
 
-    .abertura h1 {
-        font-size: 36px;
+    .abertura {
+        padding-top: 120px;
     }
 
-    .frase-final {
-        font-size: 26px;
+    .secao-historia {
+        padding-top: 72px;
+        padding-bottom: 72px;
+    }
+
+    .secao-clara {
+        padding-top: 140px;
+    }
+
+    .versiculo-destaque {
+        padding: 28px 24px;
+    }
+
+    .versiculo-destaque p {
+        font-size: 22px;
     }
 }
