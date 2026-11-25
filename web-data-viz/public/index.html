@@ -38,7 +38,6 @@
                 <a href="#quiz" onclick="fecharMenu()">Quiz</a>
                  <a href="sobre.html">Sobre Mim</a>
 
-                <!-- Esta área muda pelo JavaScript: mostra "Entrar" ou "Olá, nome | Sair" -->
                 <div class="area-usuario" id="areaUsuario">
                     <a href="login.html" class="menu-entrar">Entrar</a>
                 </div>
@@ -47,20 +46,15 @@
     </header>
 
 
-    <!-- =====================================================
-         SEÇÃO 1 — HERO (capa do site)
-         ===================================================== -->
     <section class="hero" id="inicio">
         <div class="hero-conteudo">
 
-            <!-- Referência bíblica clicável: abre a janela com o versículo inteiro -->
             <p class="hero-referencia">
                 <span class="linha"></span>
                 <button class="link-versiculo" onclick="abrirVersiculo('João 1:14')">JOÃO 1:14</button>
                 <span class="linha"></span>
             </p>
 
-            <!-- <em> deixa "DEUS" em itálico; o CSS pinta de dourado -->
             <h1 class="hero-titulo">O HOMEM-<em>DEUS</em></h1>
 
             <p class="hero-naturezas">100% HOMEM <span class="ponto">•</span> 100% DEUS</p>
@@ -69,7 +63,6 @@
                 Como a Bíblia revela um Deus que está mais perto de nós do que imaginamos.
             </p>
 
-            <!-- Botão que rola até a próxima seção -->
             <a href="#naturezas" class="botao-hero">Conheça a história <span>→</span></a>
         </div>
     </section>
@@ -116,10 +109,8 @@
                     </div>
                 </article>
 
-                <!-- CARD 02 — 100% Deus (fundo azul-escuro: classe extra "card-escuro") -->
                 <article class="card-natureza card-escuro">
                     <span class="card-numero">02</span>
-                    <!-- Ícone de brilho/estrela em SVG -->
                     <div class="card-icone">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                             <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path>
@@ -165,7 +156,6 @@
                 </p>
             </div>
 
-            <!-- ---------- CAPÍTULO 01 ---------- -->
             <div class="capitulo" id="capitulo1">
                 <button class="capitulo-linha" onclick="abrirCapitulo(1)">
                     <span class="capitulo-numero">01</span>
@@ -200,7 +190,6 @@
                 </div>
             </div>
 
-            <!-- ---------- CAPÍTULO 02 ---------- -->
             <div class="capitulo" id="capitulo2">
                 <button class="capitulo-linha" onclick="abrirCapitulo(2)">
                     <span class="capitulo-numero">02</span>
@@ -248,7 +237,6 @@
                 </div>
             </div>
 
-            <!-- ---------- CAPÍTULO 03 ---------- -->
             <div class="capitulo" id="capitulo3">
                 <button class="capitulo-linha" onclick="abrirCapitulo(3)">
                     <span class="capitulo-numero">03</span>
@@ -349,7 +337,6 @@
                 </div>
             </div>
 
-            <!-- Fechamento da jornada com Hebreus 4:15–16 -->
             <div class="versiculo-final">
                 <p class="rotulo">Por isso</p>
                 <p class="versiculo-final-texto">
@@ -362,13 +349,9 @@
     </section>
 
 
-    <!-- =====================================================
-         SEÇÃO 4 — EVANGELHOS (gráfico com Chart.js)
-         ===================================================== -->
     <section class="evangelhos" id="evangelhos">
         <div class="container evangelhos-grid">
 
-            <!-- Coluna da esquerda: textos -->
             <div>
                 <p class="rotulo">Os quatro testemunhos</p>
                 <h2 class="titulo-secao">Uma história,<br><em>quatro perspectivas.</em></h2>
@@ -377,28 +360,22 @@
                     seus <strong id="totalTexto">89</strong> capítulos formam o coração narrativo do Novo Testamento.
                 </p>
 
-                <!-- O número 89 é calculado pelo JavaScript somando os dados do gráfico -->
                 <div class="total-capitulos">
                     <span class="total-numero" id="totalCapitulos">89</span>
                     <span class="total-legenda">Capítulos<br>sobre Jesus</span>
                 </div>
             </div>
 
-            <!-- Coluna da direita: card do gráfico -->
             <div class="card-grafico">
                 <div class="grafico-topo">
                     <span>Capítulos por Evangelho</span>
                     <span class="grafico-topo-direita">Novo Testamento</span>
                 </div>
 
-                <!-- O Chart.js desenha o gráfico dentro do <canvas>.
-                     A div em volta (grafico-area) controla a altura. -->
                 <div class="grafico-area">
                     <canvas id="graficoEvangelhos"></canvas>
                 </div>
 
-                <!-- Nomes embaixo das barras (criados pelo JavaScript).
-                     Clicando em um nome, aparece a explicação daquele Evangelho. -->
                 <div class="legenda-grafico" id="legendaGrafico"></div>
 
                 <div class="descricao-evangelho" id="descricaoEvangelho">
@@ -411,9 +388,6 @@
     </section>
 
 
-    <!-- =====================================================
-         SEÇÃO 5 — DITADOS (A voz de Jesus)
-         ===================================================== -->
     <section class="ditados" id="ditados">
         <div class="container">
 
@@ -473,11 +447,6 @@
     </section>
 
 
-    <!-- =====================================================
-         SEÇÃO 6 — QUIZ
-         A pergunta, as alternativas e o progresso são preenchidos
-         pelo JavaScript (script.js), usando os ids abaixo.
-         ===================================================== -->
     <section class="quiz" id="quiz">
         <div class="container quiz-grid">
 
@@ -493,7 +462,6 @@
 
             <div class="card-quiz">
 
-                <!-- Parte 1: quiz em andamento -->
                 <div id="quizAndamento">
                     <div class="quiz-topo">
                         <span id="quizContador">Questão 1 de 11git </span>
@@ -514,20 +482,17 @@
                     </div>
                 </div>
 
-                <!-- Parte 2: resultado (começa escondido com style="display: none") -->
                 <div class="quiz-resultado" id="quizResultado" style="display: none;">
                     <p class="rotulo">Resultado</p>
                     <p class="resultado-numero" id="resultadoNumero">0/4</p>
                     <p class="resultado-mensagem" id="resultadoMensagem"></p>
                     <button class="botao-principal" onclick="reiniciarQuiz()">Refazer quiz</button>
                 </div>
-                                <!-- Parte 3: aviso para quem não está logado (começa escondido) -->
                 <div class="quiz-resultado" id="quizBloqueado" style="display: none;">
                     <p class="rotulo">Quiz exclusivo</p>
                     <p class="resultado-mensagem">Entre na sua conta para responder o quiz e acompanhar a sua evolução.</p>
                     <a href="login.html" class="botao-principal">Entrar →</a>
                 </div>
-                                <!-- Parte 3: aviso para quem não está logado (começa escondido) -->
                 <div class="quiz-resultado" id="quizBloqueado" style="display: none;">
                     <p class="rotulo">Quiz exclusivo</p>
                     <p class="resultado-mensagem">Entre na sua conta para responder o quiz e acompanhar a sua evolução.</p>
@@ -537,9 +502,6 @@
         </div>
     </section>
 
-        <!-- =====================================================
-         EVOLUÇÃO NO QUIZ (dados do banco, só para quem está logado)
-         ===================================================== -->
     <section class="evangelhos" id="evolucao" style="display: none;">
         <div class="container evangelhos-grid">
             <div>
