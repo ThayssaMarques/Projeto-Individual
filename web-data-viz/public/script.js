@@ -578,7 +578,14 @@ function mostrarKpis(kpi) {
 }
 
 mostrarUsuario();
-montarLegenda();
-mostrarTotalCapitulos();
-verificarAcessoQuiz();
-criarGrafico();
+
+
+if (document.getElementById("graficoEvangelhos") != null) {
+    montarLegenda();
+    mostrarTotalCapitulos();
+    criarGrafico();
+}
+
+if (document.getElementById("quizAndamento") != null) {
+    verificarAcessoQuiz();
+}

@@ -1524,3 +1524,151 @@ button {
         padding: 32px 24px;
     }
 }
+
+.abertura {
+    background-color: #0b2545;
+    color: #ffffff;
+    text-align: center;
+    padding: 90px 20% 50px;
+}
+
+.abertura h1 {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.abertura p {
+    font-size: 20px;
+    font-style: italic;
+    opacity: 0.85;
+}
+
+.secao-historia {
+    padding: 70px 20%;
+    line-height: 1.7;
+    font-size: 18px;
+}
+
+.secao-historia h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.secao-historia p {
+    margin-bottom: 16px;
+}
+
+.secao-escura {
+    background-color: #0b2545;
+    color: #ffffff;
+}
+
+.secao-transicao {
+    background: linear-gradient(to bottom, #0b2545, #1f6fb2);
+    color: #ffffff;
+}
+
+.secao-clara {
+    background: linear-gradient(to bottom, #cfe2f5, #ffffff);
+    color: #0b2545;
+    text-align: center;
+}
+
+.idade {
+    display: inline-block;
+    background-color: #8fc1ff;
+    color: #0b2545;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+}
+
+.versiculo-destaque {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left: 4px solid #8fc1ff;
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin: 36px 0;
+    font-size: 20px;
+    font-style: italic;
+}
+
+.versiculo-destaque cite {
+    display: block;
+    margin-top: 12px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.secao-clara .versiculo-destaque {
+    background-color: #ffffff;
+    border-left-color: #1f6fb2;
+    box-shadow: 0 4px 16px rgba(11, 37, 69, 0.1);
+    text-align: left;
+}
+
+.foto-historia {
+    margin: 36px 0;
+    text-align: center;
+}
+
+.foto-historia img {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.foto-historia figcaption {
+    margin-top: 10px;
+    font-size: 15px;
+    font-style: italic;
+    opacity: 0.85;
+}
+
+.frase-final {
+    font-size: 34px;
+    font-weight: bold;
+    color: #1f6fb2;
+    margin: 30px 0;
+}
+
+.botoes-final {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.botao {
+    display: inline-block;
+    background-color: #1f6fb2;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.botao:hover {
+    background-color: #0b2545;
+}
+
+@media (max-width: 768px) {
+    .abertura,
+    .secao-historia {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .abertura h1 {
+        font-size: 36px;
+    }
+
+    .frase-final {
+        font-size: 26px;
+    }
+}

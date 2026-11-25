@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- lang="pt-BR" avisa ao navegador (e a leitores de tela) que o texto está em português -->
 <html lang="pt-BR">
 
 <head>
@@ -9,40 +8,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O Homem-Deus</title>
 
-    <!-- Fontes do Google: Cormorant Garamond (títulos elegantes, com serifa)
-         e DM Sans (textos e menus, sem serifa e fácil de ler) -->
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Nosso arquivo de estilos (o mesmo para todas as páginas) -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =====================================================
-         CABEÇALHO FIXO + MENU DE NAVEGAÇÃO
-         ===================================================== -->
     <header class="cabecalho">
         <div class="container cabecalho-conteudo">
 
-            <!-- Logo: um link que leva para o topo da página (#inicio) -->
+           
             <a href="#inicio" class="logo">
                 <span class="logo-icone">†</span>
                 O HOMEM-DEUS
             </a>
 
-            <!-- Botão "hambúrguer": só aparece no celular (o CSS controla isso) -->
             <button class="botao-menu" id="botaoMenu" onclick="abrirFecharMenu()" aria-label="Abrir menu">☰</button>
 
-            <!-- Menu: cada link leva a uma seção da página pelo id (#humanidade, #evangelhos...) -->
+           
             <nav class="menu" id="menu">
                 <a href="#inicio" onclick="fecharMenu()">Início</a>
                 <a href="#humanidade" onclick="fecharMenu()">Humanidade</a>
                 <a href="#evangelhos" onclick="fecharMenu()">Evangelhos</a>
                 <a href="#ditados" onclick="fecharMenu()">Ditados</a>
                 <a href="#quiz" onclick="fecharMenu()">Quiz</a>
+                 <a href="sobre.html">Sobre Mim</a>
 
                 <!-- Esta área muda pelo JavaScript: mostra "Entrar" ou "Olá, nome | Sair" -->
                 <div class="area-usuario" id="areaUsuario">
@@ -92,7 +86,6 @@
 
             <div class="cards-naturezas">
 
-               
                 <article class="card-natureza">
                     <span class="card-numero">01</span>
                    
@@ -213,7 +206,7 @@
                     <span class="capitulo-numero">02</span>
                     <span class="capitulo-info">
                         <span class="capitulo-ref">Lucas 2:40–52</span>
-                        <span class="capitulo-titulo">Jesus viveu nossa condição</span>
+                        <span class="capitulo-titulo">O Deus viveu nossa condição</span>
                     </span>
                     <span class="capitulo-resumo">Ele cresceu, aprendeu, trabalhou e viveu no ritmo comum de uma família.</span>
                     <span class="capitulo-seta">→</span>
@@ -261,7 +254,7 @@
                     <span class="capitulo-numero">03</span>
                     <span class="capitulo-info">
                         <span class="capitulo-ref">Hebreus 4:15 · João 11:35</span>
-                        <span class="capitulo-titulo">Jesus conheceu nossas dores</span>
+                        <span class="capitulo-titulo">O Deus que conhece nossas dores</span>
                     </span>
                     <span class="capitulo-resumo">O Cristo sem pecado não foi indiferente: sentiu perda, angústia e compaixão.</span>
                     <span class="capitulo-seta">→</span>
@@ -294,7 +287,6 @@
                 </div>
             </div>
 
-            <!-- ---------- CAPÍTULO 04 ---------- -->
             <div class="capitulo" id="capitulo4">
                 <button class="capitulo-linha" onclick="abrirCapitulo(4)">
                     <span class="capitulo-numero">04</span>
@@ -323,7 +315,6 @@
                 </div>
             </div>
 
-            <!-- ---------- CAPÍTULO 05 ---------- -->
             <div class="capitulo" id="capitulo5">
                 <button class="capitulo-linha" onclick="abrirCapitulo(5)">
                     <span class="capitulo-numero">05</span>
