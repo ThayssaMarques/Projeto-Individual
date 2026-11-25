@@ -6,6 +6,7 @@
     <title>Sobre Mim | O Homem-Deus</title>
     
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 
 </head>
 <body>
@@ -83,6 +84,7 @@
         <blockquote class="versiculo-destaque">
             <p>"Todas as coisas foram feitas por ele, e sem ele nada do que foi feito se fez. Nele estava a vida, e a vida era a luz dos homens. E a luz resplandece nas trevas, e as trevas não a compreenderam."</p>
             <cite>João 1:3-5 (ARC)</cite>
+                        <button class="referencia" onclick="abrirVersiculo('João 1:1-14')">Ler João 1:1-14</button>
         </blockquote>
 
         <figure class="foto-historia">
@@ -111,6 +113,7 @@
         <blockquote class="versiculo-destaque">
             <p>"Porque não temos um sumo sacerdote que não possa compadecer-se das nossas fraquezas; porém um que, como nós, em tudo foi tentado, mas sem pecado."</p>
             <cite>Hebreus 4:15 (ARC)</cite>
+                        <button class="referencia" onclick="abrirVersiculo('Hebreus 4:15-16')">Ler Hebreus 4:15-16</button>
         </blockquote>
 
         <div class="botoes-final">
@@ -119,3 +122,12 @@
         </div>
     </section>
     </main>
+    <div class="modal-fundo" id="modalVersiculo" onclick="clicarFundoModal(event)">
+        <div class="modal-caixa">
+            <button class="modal-fechar" onclick="fecharVersiculo()" aria-label="Fechar">×</button>
+            <p class="rotulo">Palavra</p>
+            <h3 class="modal-referencia" id="modalReferencia"></h3>
+            <p class="modal-texto" id="modalTexto"></p>
+            <p class="modal-traducao">Tradução Almeida</p>
+        </div>
+    </div>
