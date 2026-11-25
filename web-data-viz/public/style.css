@@ -1678,7 +1678,10 @@ button {
 }
 
 .foto-historia img {
-    max-width: 100%;
+    width: auto;
+    height: auto;
+    max-width: 420px;
+    max-height: 450px;
     border-radius: 4px 36px 4px 4px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
@@ -1768,5 +1771,9 @@ button {
 
     .versiculo-destaque p {
         font-size: 22px;
+    }
+
+    .foto-historia img {
+        max-width: 100%;
     }
 }
