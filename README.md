@@ -9,7 +9,8 @@ Site sobre a **humanidade de Jesus**: 100% homem e 100% Deus. Este é o projeto 
 
 | | |
 |---|---|
-📄 Documentação do projeto | [Word](https://bandteccom-my.sharepoint.com/:w:/g/personal/thayssa_souza_sptech_school/cQoboEH_iceTR7dRjyOWVtPfEgUBqw0I5EpZGAix28DuXrJjSg)
+📄 Documentação do projeto | [Word](https://bandteccom-my.sharepoint.com/:w:/g/personal/thayssa_souza_sptech_school/cQrtU9QryHi0RIvwqNA_-xr3EgUBq8ODQ3MFliki0kv7PuUD_A)
+🗂️ Organização do projeto | [Trello](https://trello.com/invite/b/6a90a4161b3e898de8072493/ATTId7808e31dbbab9aac65ce14383a68f7106B2C492/meu-quadro-do-trello) 
  
 ## 📖 Sobre o projeto
  
