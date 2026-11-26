@@ -17,7 +17,7 @@ function registrar(req, res) {
     } else {
              resultadoModel.registrar(acertos, idUsuario)
             .then(function (resultado) {
-                res.status(201).json(resultado);   // 201 = "criado com sucesso"
+                res.status(201).json(resultado);
             })
             .catch(function (erro) {
                 console.log(erro);
