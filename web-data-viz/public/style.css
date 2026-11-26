@@ -477,17 +477,18 @@ button {
 
 .capitulo-linha {
     display: grid;
-    grid-template-columns: 50px 1.1fr 1.4fr 40px;
+    grid-template-columns: 64px 1.1fr 1.4fr 40px;
     gap: 24px;
     align-items: center;
     width: 100%;
-    padding: 26px 0;
+    padding: 30px 0;
     text-align: left;
 }
 
 .capitulo-numero {
     font-family: var(--fonte-titulo);
-    font-size: 16px;
+    font-size: 30px;
+    line-height: 1;
     opacity: 0.6;
 }
 
@@ -497,7 +498,7 @@ button {
 }
 
 .capitulo-ref {
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
     opacity: 0.55;
@@ -506,7 +507,8 @@ button {
 
 .capitulo-titulo {
     font-family: var(--fonte-titulo);
-    font-size: 26px;
+    font-size: 34px;
+    line-height: 1.15;
     transition: color 0.2s;
 }
 
@@ -515,7 +517,7 @@ button {
 }
 
 .capitulo-resumo {
-    font-size: 12.5px;
+    font-size: 14.5px;
     color: rgba(255, 255, 255, 0.7);
 }
 
@@ -539,7 +541,7 @@ button {
 
 .capitulo-detalhe {
     display: none;
-    padding: 0 0 44px 74px;
+    padding: 0 0 44px 88px;
 }
 
 .capitulo.aberto .capitulo-detalhe {
@@ -805,6 +807,27 @@ button {
     letter-spacing: 1.5px;
     text-transform: uppercase;
     color: var(--texto-suave);
+}
+
+.evolucao-conteudo .kpis {
+    margin-top: 48px;
+    gap: 16px;
+}
+
+.evolucao-conteudo .kpi {
+    padding: 24px 22px;
+}
+
+.evolucao-conteudo .kpi-numero {
+    font-size: 48px;
+}
+
+.evolucao-conteudo .card-grafico {
+    margin-top: 24px;
+}
+
+.evolucao-conteudo .grafico-area {
+    height: 340px;
 }
 
 .ditados {
@@ -1439,7 +1462,7 @@ button {
     }
 
     .capitulo-linha {
-        grid-template-columns: 36px 1fr 36px;
+        grid-template-columns: 44px 1fr 36px;
         gap: 6px 14px;
     }
 
@@ -1488,7 +1511,11 @@ button {
     }
 
     .capitulo-titulo {
-        font-size: 22px;
+        font-size: 26px;
+    }
+
+    .capitulo-numero {
+        font-size: 24px;
     }
 
     .card-grafico {
@@ -1497,6 +1524,14 @@ button {
 
     .grafico-area {
         height: 240px;
+    }
+
+    .evolucao-conteudo .grafico-area {
+        height: 260px;
+    }
+
+    .evolucao-conteudo .kpi-numero {
+        font-size: 40px;
     }
 
     .legenda-item strong {
